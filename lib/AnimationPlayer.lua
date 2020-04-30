@@ -1,0 +1,40 @@
+local Anim = require("lib/loveAnim/anim")
+local AnimationPlayer = {}
+
+-- coding stuff like this by hand is so painful...
+
+function AnimationPlayer:new(path, hFrames, vFrames)
+  newPlayer = {
+    _sheet = nil ,
+    anims = {},
+    currentAnim = nil
+  }
+  newPlayer._sheet = Anim.newSpriteSheet(path, hFrames, vFrames)
+  self.__index = self
+  return setmetatable(newPlayer, self)
+end
+
+function AnimationPlayer:addAnim(key, str, time, loop)
+  assert(type(str) == 'string')
+  splitIndex = str:find('-')
+  assert(splitIndex ~= nil)
+  startIndex = tonumber(str:sub(1, splitIndex - 1))
+  endIndex = tonumber(str:sub(splitIndex + 1, splitIndex + 1))
+  self.anims[key] = Anim:new(self._sheet, startIndex, endIndex, time, loop)
+end
+
+function AnimationPlayer:play(key)
+  if self.anims[key] == currentAnim then return end
+  self.currentAnim = self.anims[key]
+end
+
+function AnimationPlayer:show(x, y, r, sx, sy)
+  love.graphics.setColor(1, 1, 1)
+  self.currentAnim:show(x, y, r, sx, sy)
+end
+
+function AnimationPlayer:update(dt)
+  self.currentAnim:update(dt)
+end
+
+return AnimationPlayer
