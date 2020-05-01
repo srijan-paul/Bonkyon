@@ -6,8 +6,10 @@ function Entity:new(x, y)
   newEnt = {}
   self.row , self.col = r, c
   self.__index = self
+  self.collision = false
   return setmetatable(newEnt, self)
 end
+
 
 function Entity:update(dt)
   if self.anm:isActive() then
@@ -15,6 +17,10 @@ function Entity:update(dt)
   end
 end
 
+
+function Entity:setCollision(bool)
+  self.collision = bool
+end
 
 function Entity:show(x, y, r, sx, sy)
   if self.anm:isActive() then
