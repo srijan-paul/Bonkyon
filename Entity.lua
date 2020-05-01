@@ -22,6 +22,7 @@ function Entity:setCollision(bool)
   self.collision = bool
 end
 
+
 function Entity:show(x, y, r, sx, sy)
   if self.anm:isActive() then
     self.anim.show(x, y, r, sx, sy)
