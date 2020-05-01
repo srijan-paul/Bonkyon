@@ -16,7 +16,7 @@ function Grid:new(r, c, xp, yp)
     newGrid.tiles[i] = {}
     newGrid.entityMap[i] = {}
     for j = 1, c do
-      newGrid.tiles[i][j] = Tile:new(GameConstants.Tile.FLOOR)
+      newGrid.tiles[i][j] = nil
     end
   end
 

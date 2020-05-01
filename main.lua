@@ -3,6 +3,7 @@ local Grid = require("Grid")
 local Twin = require('Player')
 local Tile = require('Tile')
 local GameConstants = require('GameConstants')
+local loadLevel = require('LevelLoader')
 
 local pixelFont
 local gridPos = {x = 300, y = 200}
@@ -13,8 +14,8 @@ function love.load(arg)
   love.graphics.setFont(pixelFont)
   love.window.setMode(1024, 576)
   -- initialize the grid
-  grid = Grid:new(4, 3, 0, 0)
-  grid:setPos(300, 200)
+  grid = loadLevel('levels/level1.json')
+  grid:setPos(100, 100)
 
   -- create the twins
   devilTwin = Twin:new()
@@ -26,9 +27,9 @@ function love.load(arg)
   devilTwin:init(grid, 2, 3, Twin.type.DEVIL)
   angelTwin:init(grid, 3, 3, Twin.type.ANGEL)
 
-  grid.tiles[1][3] = Tile:new(GameConstants.Tile.BLOCK)
-  grid.tiles[1][2] = Tile:new(GameConstants.Tile.BLOCK)
-  grid.tiles[4][2] = Tile:new(GameConstants.Tile.DEVIL_EXIT)
+  -- grid.tiles[1][3] = Tile:new(GameConstants.Tile.BLOCK)
+  -- grid.tiles[1][2] = Tile:new(GameConstants.Tile.BLOCK)
+  -- grid.tiles[4][2] = Tile:new(GameConstants.Tile.DEVIL_EXIT)
 
   love.graphics.setBackgroundColor(util.hexToColor('4d4c7d'))
 
