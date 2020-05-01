@@ -31,7 +31,7 @@ function love.load(arg)
   -- grid.tiles[1][2] = Tile:new(GameConstants.Tile.BLOCK)
   -- grid.tiles[4][2] = Tile:new(GameConstants.Tile.DEVIL_EXIT)
 
-  love.graphics.setBackgroundColor(util.hexToColor('4d4c7d'))
+  love.graphics.setBackgroundColor(util.hexToColor('212121'))
 
   -- the hexToColor function should not be used extensively in a game's update
   -- loop for performance reasons

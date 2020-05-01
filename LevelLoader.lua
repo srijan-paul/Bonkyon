@@ -32,7 +32,7 @@ function makeLevel(levelData)
     end
   end
   -- fill in the first two rows with wall tiles and the last with bricks
-  for j = 1, levelData.cols + 1 do
+  for j = 2, levelData.cols + 1 do
     grid.tiles[1][j] = Tile:new(GameConstants.Tile.WALL_TOP)
     grid.tiles[levelData.rows + 2][j] = Tile:new(GameConstants.Tile.BRICK_BOT)
   end
@@ -45,8 +45,8 @@ function makeLevel(levelData)
     grid.tiles[i][levelData.cols + 2] = Tile:new(GameConstants.Tile.BRICK_RIGHT)
   end
 
-    grid.tiles[levelData.rows + 2][1] = Tile:new()
-    grid.tiles[levelData.rows + 2][levelData.cols + 2] = Tile:new()
+  grid.tiles[levelData.rows + 2][1] = Tile:new()
+  grid.tiles[levelData.rows + 2][levelData.cols + 2] = Tile:new()
 
   return grid
 end
