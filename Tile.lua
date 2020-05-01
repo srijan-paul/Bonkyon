@@ -10,7 +10,7 @@ local TileSpriteSheet, tileQuads = {}
 
 function Tile.initTexture()
   TileSpriteSheet = Sprite.newSpriteSheet('assets/images/tileset_light.png',
-    10, 1)
+    12, 1)
 end
 
 function Tile:new(type)
@@ -37,7 +37,11 @@ function Tile:new(type)
   elseif newCell.type == GameConstants.Tile.BRICK_BOT then
     newCell.pathable = false
     newCell.spriteIndex = 9
-  else newCell.spriteIndex = 10 end
+  elseif newCell.type == GameConstants.Tile.DEVIL_END then
+    newCell.spriteIndex = 10
+  elseif newCell.type == GameConstants.Tile.ANGEL_END then
+    newCell.spriteIndex = 11
+  else newCell.spriteIndex = 12 end
 
 
   return setmetatable(newCell, self)

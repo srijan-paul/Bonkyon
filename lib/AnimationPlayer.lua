@@ -15,7 +15,7 @@ function AnimationPlayer:new(path, hFrames, vFrames)
 end
 
 
-function AnimationPlayer:addAnim(key, str, time, loop)
+function AnimationPlayer:add(key, str, time, loop)
   assert(type(str) == 'string')
   splitIndex = str:find('-')
   assert(splitIndex ~= nil)
@@ -26,7 +26,7 @@ end
 
 
 function AnimationPlayer:play(key)
-  if self.anims[key] == currentAnim then return end
+  if self.anims[key] == self.currentAnim then return end
   self.currentAnim = self.anims[key]
 end
 
@@ -43,7 +43,7 @@ end
 
 
 function AnimationPlayer:isActive()
-  return self.currentAnim == nil 
+  return self.currentAnim ~= nil
 end
 
 

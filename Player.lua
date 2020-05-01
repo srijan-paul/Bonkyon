@@ -28,8 +28,8 @@ function Player:init(grid, row, col, type)
   end
   -- sprites for when the Player is red
 
-  self.anim:addAnim('idle', '1-2', 0.2, true)
-  self.anim:addAnim('squashed', '3-3', 16, false)
+  self.anim:add('idle', '1-2', 0.2, true)
+  self.anim:add('squashed', '3-3', 1, false)
 
   love.graphics.setColor(1, 1, 1)
   self.anim:play('idle')

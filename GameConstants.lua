@@ -19,7 +19,9 @@ local GameConstants = {
     WALL_TOP = 6,
     BRICK_LEFT = 7,
     BRICK_RIGHT = 8,
-    BRICK_BOT = 9
+    BRICK_BOT = 9,
+    DEVIL_END = 10,
+    ANGEL_END = 11
   },
   TILE_WIDTH = 64,
   TILE_HEIGHT = 64

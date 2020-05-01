@@ -4,10 +4,12 @@ local Twin = require('Player')
 local Tile = require('Tile')
 local GameConstants = require('GameConstants')
 local loadLevel = require('LevelLoader')
+local Entity = require('Entity')
 
 local pixelFont
-local gridPos = {x = 300, y = 200}
 
+
+-- local devilExit, angelExit
 
 function love.load(arg)
   pixelFont = love.graphics.newFont("assets/font/font.ttf", 20)
@@ -20,6 +22,9 @@ function love.load(arg)
   -- create the twins
   devilTwin = Twin:new()
   angelTwin = Twin:new()
+
+  -- initialize the exits
+  -- devilExit = createDevilExit(grid.devilExit.row, grid.devilExit.col)
 
   -- set filter so the image imports are not blurry
   love.graphics.setDefaultFilter("nearest", "nearest")
@@ -39,7 +44,9 @@ end
 
 
 function love.draw()
-  grid:show(gridPos.x, gridPos.y)
+  -- TODO remove these hardcoded values
+  grid:show(100, 100)
+  love.graphics.setColor(0.5, 1, 0, 1)
   devilTwin:show(grid)
   angelTwin:show(grid)
 end
@@ -76,3 +83,13 @@ end
 function gameOver()
   love.graphics.print('GAME OVEER')
 end
+
+
+-- function createDevilExit(row, col)
+--   local exit = Entity:new(row, col)
+--   exit:setTextureAtlas('assets/images/devilExit.png', 5, 1)
+--   exit:setCollision(false)
+--   exit.anim:add('glow', '1-5', 0.15, true)
+--   exit.anim:play('glow')
+--   return exit
+-- end

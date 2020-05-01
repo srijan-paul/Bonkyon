@@ -2,7 +2,7 @@ local AnimationPlayer = require("lib/AnimationPlayer")
 
 local Entity = {}
 
-function Entity:new(x, y)
+function Entity:new(r, c)
   newEnt = {}
   self.row , self.col = r, c
   self.__index = self
@@ -12,8 +12,8 @@ end
 
 
 function Entity:update(dt)
-  if self.anm:isActive() then
-    self.anim.update(dt)
+  if self.anim:isActive() then
+    self.anim:update(dt)
   end
 end
 
@@ -23,9 +23,9 @@ function Entity:setCollision(bool)
 end
 
 
-function Entity:show(x, y, r, sx, sy)
-  if self.anm:isActive() then
-    self.anim.show(x, y, r, sx, sy)
+function Entity:show(x, y, r)
+  if self.anim:isActive() then
+     self.anim:show(x, y, r, 2, 2)
   end
 end
 

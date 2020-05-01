@@ -26,11 +26,6 @@ function Grid:new(r, c, xp, yp)
 end
 
 
-function Grid:get(row, col)
-  return self.entityMap[row][col]
-end
-
-
 function Grid:setPos(x, y)
   self.x = x
   self.y = y

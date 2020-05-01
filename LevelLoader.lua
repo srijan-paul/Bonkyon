@@ -5,7 +5,10 @@ local GameConstants = require('GameConstants')
 local Tile = require('Tile')
 
 local TILE_IDS = {
-  GameConstants.Tile.FLOOR, GameConstants.Tile.BLOCK
+  GameConstants.Tile.FLOOR,
+  GameConstants.Tile.BLOCK,
+  GameConstants.Tile.DEVIL_END,
+  GameConstants.Tile.ANGEL_END
 }
 
 function loadLevel(path)
@@ -58,6 +61,16 @@ function makeLevel(levelData)
   grid.angelStart = {
     row = levelData.angelStart[1] + 1,
      col =levelData.angelStart[2] + 1
+  }
+
+  grid.devilExit = {
+    row = levelData.devilEnd[1] + 1,
+    col =levelData.devilEnd[2] + 1
+  }
+
+  grid.angelExit = {
+    row = levelData.angelEnd[1] + 1,
+    col =levelData.angelEnd[2] + 1
   }
 
   return grid
