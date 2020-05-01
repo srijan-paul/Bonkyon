@@ -10,7 +10,7 @@ local TileSpriteSheet, tileQuads = {}
 
 function Tile.initTexture()
   TileSpriteSheet = Sprite.newSpriteSheet('assets/images/tileset_light.png',
-    5, 1)
+    8, 1)
 end
 
 function Tile:new(type)

@@ -15,7 +15,9 @@ local GameConstants = {
     DEVIL_EXIT = 2,
     ANGEL_EXIT = 3,
     BLOCK = 4
-  }
+  },
+  TILE_WIDTH = 64,
+  TILE_HEIGHT = 64
 }
 
 return GameConstants
