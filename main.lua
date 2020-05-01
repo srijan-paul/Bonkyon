@@ -11,7 +11,7 @@ local gridPos = {x = 300, y = 200}
 function love.load(arg)
   pixelFont = love.graphics.newFont("assets/font/font.ttf", 20)
   love.graphics.setFont(pixelFont)
-
+  love.window.setMode(1024, 576)
   -- initialize the grid
   grid = Grid:new(4, 3, 0, 0)
   grid:setPos(300, 200)
