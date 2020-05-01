@@ -5,8 +5,8 @@ local GameConstants = require('GameConstants')
 local Grid = {}
 
 
-function Grid:new(r, c, xp, yp)
-  newGrid = {rows = r, cols = c, xPad = xp, yPad = yp}
+function Grid:new(r, c)
+  newGrid = {rows = r, cols = c}
   newGrid.tiles = {}
   newGrid.entityMap = {}
 
@@ -39,18 +39,18 @@ function Grid:show()
   for i = 1, self.rows  do
     for j = 1, self.cols  do
       self.tiles[i][j]:show(x + xOff, y + yOff)
-      xOff = xOff + self.xPad + 64
+      xOff = xOff + GameConstants.TILE_SIZE
     end
     xOff = 0
-    yOff = yOff + self.yPad + 64
+    yOff = yOff + GameConstants.TILE_SIZE
   end
 
 end
 
 
 function Grid:getTilePos(r, c)
-  return self.x + ((64 * (c - 1)) + (c - 1) * self.yPad),
-    self.y + ((64 * (r - 1)) + (r - 1) * self.yPad)
+  return self.x + (GameConstants.TILE_SIZE * (c - 1)),
+    self.y + (GameConstants.TILE_SIZE * (r - 1))
 end
 
 
