@@ -48,7 +48,6 @@ function Grid:show()
 end
 
 
-
 function Grid:getTilePos(r, c)
   return self.x + ((64 * (c - 1)) + (c - 1) * self.yPad),
     self.y + ((64 * (r - 1)) + (r - 1) * self.yPad)

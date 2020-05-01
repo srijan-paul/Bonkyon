@@ -38,7 +38,6 @@ function Player:init(grid, row, col, type)
 
   self.currentPos.x , self.currentPos.y = self:getPosOnGrid(grid)
   self.desiredPos.x , self.desiredPos.y = self:getPosOnGrid(grid)
-
 end
 
 
@@ -61,7 +60,6 @@ function Player:playAnim(anim)
 end
 
 function Player:update(dt)
-
   if self.currentPos.x > self.desiredPos.x then
     -- if Player moved past the desired spot
     if self.spriteDir.x == 1 then
@@ -111,6 +109,7 @@ function Player:moveLeft(grid)
   end
   self.spriteDir.x = -1
 end
+
 
 function Player:moveRight(grid)
   if self.col < grid.cols and grid.tiles[self.row][self.col + 1].pathable then
