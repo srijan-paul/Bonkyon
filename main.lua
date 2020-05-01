@@ -25,7 +25,7 @@ function love.load(arg)
   love.graphics.setDefaultFilter("nearest", "nearest")
 
   devilTwin:init(grid, grid.devilStart.row, grid.devilStart.col, Twin.type.DEVIL)
-    angelTwin:init(grid, grid.angelStart.row, grid.angelStart.col, Twin.type.ANGEL)
+  angelTwin:init(grid, grid.angelStart.row, grid.angelStart.col, Twin.type.ANGEL)
 
   -- grid.tiles[1][3] = Tile:new(GameConstants.Tile.BLOCK)
   -- grid.tiles[1][2] = Tile:new(GameConstants.Tile.BLOCK)
