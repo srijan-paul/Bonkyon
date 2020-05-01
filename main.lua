@@ -2,6 +2,7 @@ local util = require("Helpers")
 local Grid = require("Grid")
 local Twin = require('Player')
 local Tile = require('Tile')
+local GameConstants = require('GameConstants')
 
 local pixelFont
 local canMove = true
@@ -26,8 +27,9 @@ function love.load(arg)
   devilTwin:init(grid, 2, 3, Twin.type.DEVIL)
   angelTwin:init(grid, 3, 3, Twin.type.ANGEL)
 
-  grid.tiles[1][3] = Tile:new(false)
-  grid.tiles[1][2] = Tile:new(false)
+  grid.tiles[1][3] = Tile:new(GameConstants.Tile.BLOCK)
+  grid.tiles[1][2] = Tile:new(GameConstants.Tile.BLOCK)
+  grid.tiles[4][2] = Tile:new(GameConstants.Tile.DEVIL_EXIT)
 
   love.graphics.setBackgroundColor(util.hexToColor('4d4c7d'))
 

@@ -1,5 +1,6 @@
 local Tile = require('Tile')
 local ds = require('lib/ds')
+local GameConstants = require('GameConstants')
 
 local Grid = {}
 
@@ -12,7 +13,7 @@ function Grid:new(r, c, xp, yp)
   for i = 1, r do
     newGrid.tiles[i] = {}
     for j = 1, c do
-      newGrid.tiles[i][j] = Tile:new(true)
+      newGrid.tiles[i][j] = Tile:new(GameConstants.Tile.FLOOR)
     end
   end
 
