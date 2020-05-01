@@ -9,6 +9,7 @@ local TILE_HEIGHT = 64
 local TileSpriteSheet, tileQuads = {}
 
 function Tile.initTexture()
+  love.graphics.setDefaultFilter('nearest', 'nearest')
   TileSpriteSheet = Sprite.newSpriteSheet('assets/images/tileset_light.png',
     12, 1)
 end
