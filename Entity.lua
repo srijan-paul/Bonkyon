@@ -15,8 +15,11 @@ function Entity:update(dt)
   end
 end
 
-function Entity:show()
 
+function Entity:show(x, y, r, sx, sy)
+  if self.anm:isActive() then
+    self.anim.show(x, y, r, sx, sy)
+  end
 end
 
 
