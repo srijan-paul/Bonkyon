@@ -1,5 +1,6 @@
 local Grid = require('Grid')
 local json = require('lib/luaJSON/json')
+-- credits to rxi on github for the lua json parser.
 local GameConstants = require('GameConstants')
 local Tile = require('Tile')
 
@@ -45,8 +46,19 @@ function makeLevel(levelData)
     grid.tiles[i][levelData.cols + 2] = Tile:new(GameConstants.Tile.BRICK_RIGHT)
   end
 
+  -- fill the 2 bottom corners with empty tiles
   grid.tiles[levelData.rows + 2][1] = Tile:new()
   grid.tiles[levelData.rows + 2][levelData.cols + 2] = Tile:new()
+
+  grid.devilStart = {
+    row = levelData.devilStart[1] + 1,
+    col =levelData.devilStart[2] + 1
+  }
+
+  grid.angelStart = {
+    row = levelData.angelStart[1] + 1,
+     col =levelData.angelStart[2] + 1
+  }
 
   return grid
 end

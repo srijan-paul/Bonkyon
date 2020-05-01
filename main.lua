@@ -24,8 +24,8 @@ function love.load(arg)
   -- set filter so the image imports are not blurry
   love.graphics.setDefaultFilter("nearest", "nearest")
 
-  devilTwin:init(grid, 2, 3, Twin.type.DEVIL)
-  angelTwin:init(grid, 3, 3, Twin.type.ANGEL)
+  devilTwin:init(grid, grid.devilStart.row, grid.devilStart.col, Twin.type.DEVIL)
+    angelTwin:init(grid, grid.angelStart.row, grid.angelStart.col, Twin.type.ANGEL)
 
   -- grid.tiles[1][3] = Tile:new(GameConstants.Tile.BLOCK)
   -- grid.tiles[1][2] = Tile:new(GameConstants.Tile.BLOCK)
