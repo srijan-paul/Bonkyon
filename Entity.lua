@@ -1,4 +1,4 @@
-local Animation = require("lib/loveAnim/anim")
+local AnimationPlayer = require("lib/AnimationPlayer")
 
 local Entity = {}
 
@@ -9,16 +9,25 @@ function Entity:new(x, y)
   return setmetatable(newEnt, self)
 end
 
-function Entity:update()
-
+function Entity:update(dt)
+  if self.anm:isActive() then
+    self.anim.update(dt)
+  end
 end
 
 function Entity:show()
 
 end
 
+
+function Entity:setTextureAtlas(path, hFrames, vFrames)
+  self.anim = AnimationPlayer:new(path, hFrames, vFrames)
+end
+
+
 function Entity:getPos()
   return self.row , self.col
 end
+
 
 return Entity
