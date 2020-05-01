@@ -5,6 +5,7 @@ local ds = {}
 
 local Array2D = {}
 
+
 function Array2D:new(rows, cols)
   newArr = {}
   for i = 1, rows do
@@ -16,13 +17,16 @@ function Array2D:new(rows, cols)
   return newArr
 end
 
+
 local stack = {}
+
 
 function stack:new()
   newStack = {_values = {}}
   self.__index = self
   return setmetatable(newStack, stack)
 end
+
 
 function stack:push(...)
   local args = {...}
@@ -31,6 +35,7 @@ function stack:push(...)
   end
 end
 
+
 function stack:pop()
   if #self._values > 0 then
     return table.remove(self._values)
@@ -38,6 +43,7 @@ function stack:pop()
     return nil
   end
 end
+
 
 ds.arr2d = Array2D
 ds.stack = stack

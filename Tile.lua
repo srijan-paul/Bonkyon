@@ -29,7 +29,6 @@ function Tile:new(type)
   return setmetatable(newCell, self)
 end
 
--- replace this with something that renders a tile animation... i'll cry
 
 function Tile:show(x, y)
   TileSpriteSheet:showFrame(self.spriteIndex, x, y, 0, 2, 2)

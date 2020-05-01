@@ -5,7 +5,6 @@ local Tile = require('Tile')
 local GameConstants = require('GameConstants')
 
 local pixelFont
-local canMove = true
 local gridPos = {x = 300, y = 200}
 
 
@@ -42,9 +41,6 @@ function love.draw()
   grid:show(gridPos.x, gridPos.y)
   devilTwin:show(grid)
   angelTwin:show(grid)
-
-  love.graphics.print(devilTwin.currentPos.x, 10, 10)
-  love.graphics.print(angelTwin.desiredPos.x, 10, 30)
 end
 
 
@@ -55,7 +51,6 @@ end
 
 
 function love.keypressed(key)
-  if not canMove then return end
 
   if key == 'a' then
     devilTwin:moveLeft(grid)
