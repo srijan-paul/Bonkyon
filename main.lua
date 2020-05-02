@@ -1,10 +1,10 @@
-local util = require("Helpers")
-local Grid = require("Grid")
-local Twin = require('Player')
-local Tile = require('Tile')
-local GameConstants = require('GameConstants')
-local loadLevel = require('LevelLoader')
-local Entity = require('Entity')
+local util = require("lib/Helpers")
+local Grid = require("game/Grid")
+local Twin = require('game/Player')
+local Tile = require('game/Tile')
+local GameConstants = require('game/GameConstants')
+local loadLevel = require('game/LevelLoader')
+local Entity = require('game/Entity')
 
 local pixelFont
 

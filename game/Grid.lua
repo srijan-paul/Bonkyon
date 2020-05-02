@@ -1,6 +1,6 @@
-local Tile = require('Tile')
+local Tile = require('game/Tile')
 local ds = require('lib/ds')
-local GameConstants = require('GameConstants')
+local GameConstants = require('game/GameConstants')
 
 local Grid = {}
 

@@ -1,5 +1,5 @@
 local Sprite = require('lib/loveAnim/anim')
-local GameConstants = require('GameConstants')
+local GameConstants = require('game/GameConstants')
 
 -- local TileType = require('TileType')
 local Tile = {}

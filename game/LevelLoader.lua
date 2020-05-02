@@ -1,8 +1,8 @@
-local Grid = require('Grid')
+local Grid = require('game/Grid')
 local json = require('lib/luaJSON/json')
 -- credits to rxi on github for the lua json parser.
-local GameConstants = require('GameConstants')
-local Tile = require('Tile')
+local GameConstants = require('game/GameConstants')
+local Tile = require('game/Tile')
 
 local TILE_IDS = {
   GameConstants.Tile.FLOOR,

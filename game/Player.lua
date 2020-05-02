@@ -1,5 +1,5 @@
 local AnimationPlayer = require('lib/AnimationPlayer')
-local Globals = require('GameConstants')
+local Globals = require('game/GameConstants')
 
 local Player = {
   type = {
