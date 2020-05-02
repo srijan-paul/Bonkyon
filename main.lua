@@ -30,18 +30,13 @@ function love.load(arg)
   devilTwin:init(grid, grid.devilStart.row, grid.devilStart.col, Twin.type.DEVIL)
   angelTwin:init(grid, grid.angelStart.row, grid.angelStart.col, Twin.type.ANGEL)
 
-  -- grid.tiles[1][3] = Tile:new(GameConstants.Tile.BLOCK)
-  -- grid.tiles[1][2] = Tile:new(GameConstants.Tile.BLOCK)
-  -- grid.tiles[4][2] = Tile:new(GameConstants.Tile.DEVIL_EXIT)
-
   love.graphics.setBackgroundColor(util.hexToColor('212121'))
 
   -- the hexToColor function should not be used extensively in a game's update
   -- loop for performance reasons
   -- initialize the jump sound
   jumpSound = love.audio.newSource('assets/sounds/jump.wav', 'static')
-
-  jumpSound:setVolume(0.3) -- 90% of ordinary volume
+  jumpSound:setVolume(0.3) -- 30% of ordinary volume
 end
 
 
