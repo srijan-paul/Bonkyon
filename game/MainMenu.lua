@@ -25,7 +25,7 @@ function MainMenu.load()
   angelAnim:add('idle', '1-3', 0.15, true)
   angelAnim:play('idle')
 
-  love.graphics.setBackgroundColor(util.hexToColor('6886c5'))
+  love.graphics.setBackgroundColor(util.hexToColor('#2980b9'))
   love.graphics.setColor(util.hexToColor('ffacb7'))
 end
 
@@ -35,7 +35,7 @@ function MainMenu.show()
   love.graphics.draw(Resources.Image.Logo, logoPos.x, logoPos.y)
   devilAnim:show(devilSpritePos.x, devilSpritePos.y , 0, -4, 4)
   angelAnim:show(angelSpritePos.x, angelSpritePos.y , 0, 4, 4)
-  love.graphics.setColor(util.hexToColor('413c69'))
+  love.graphics.setColor(1, 1, 1, 1)
   love.graphics.print('Press Enter to start !', logoPos.x + 50, logoPos.y + 100)
 end
 
