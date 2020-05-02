@@ -8,13 +8,13 @@ local Entity = require('Entity')
 
 local pixelFont
 
+local jumpSound
 
--- local devilExit, angelExit
 
 function love.load(arg)
   pixelFont = love.graphics.newFont("assets/font/font.ttf", 20)
   love.graphics.setFont(pixelFont)
-  love.window.setMode(1024, 576)
+  love.window.setMode(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT)
   -- initialize the grid
   grid = loadLevel('levels/level1.json')
   grid:setPos(100, 100)
@@ -23,8 +23,6 @@ function love.load(arg)
   devilTwin = Twin:new()
   angelTwin = Twin:new()
 
-  -- initialize the exits
-  -- devilExit = createDevilExit(grid.devilExit.row, grid.devilExit.col)
 
   -- set filter so the image imports are not blurry
   love.graphics.setDefaultFilter("nearest", "nearest")
@@ -40,6 +38,10 @@ function love.load(arg)
 
   -- the hexToColor function should not be used extensively in a game's update
   -- loop for performance reasons
+  -- initialize the jump sound
+  jumpSound = love.audio.newSource('assets/sounds/jump.wav', 'static')
+
+  jumpSound:setVolume(0.3) -- 90% of ordinary volume
 end
 
 
@@ -76,6 +78,9 @@ function love.keypressed(key)
 
   devilTwin:updatePos(grid)
   angelTwin:updatePos(grid)
+  if (devilTwin:isMoving() or angelTwin:isMoving()) then
+    jumpSound:play()
+  end
 end
 
 
@@ -83,13 +88,3 @@ end
 function gameOver()
   love.graphics.print('GAME OVEER')
 end
-
-
--- function createDevilExit(row, col)
---   local exit = Entity:new(row, col)
---   exit:setTextureAtlas('assets/images/devilExit.png', 5, 1)
---   exit:setCollision(false)
---   exit.anim:add('glow', '1-5', 0.15, true)
---   exit.anim:play('glow')
---   return exit
--- end

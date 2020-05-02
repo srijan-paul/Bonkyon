@@ -102,6 +102,10 @@ function Player:update(dt)
   self.anim:update(dt)
 end
 
+function Player:isMoving()
+  return (self.currentPos.x ~= self.desiredPos.x
+      or self.currentPos.y ~= self.desiredPos.y)
+end
 
 function Player:moveLeft(grid)
   if self.col > 1 and grid.tiles[self.row][self.col - 1].pathable then

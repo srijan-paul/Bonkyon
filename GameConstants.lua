@@ -23,7 +23,9 @@ local GameConstants = {
     DEVIL_END = 10,
     ANGEL_END = 11
   },
-  TILE_SIZE = 64
+  TILE_SIZE = 64,
+  SCREEN_WIDTH = 1024,
+  SCREEN_HEIGHT = 576
 }
 
 return GameConstants
