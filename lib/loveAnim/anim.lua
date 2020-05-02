@@ -6,7 +6,10 @@ function SpriteSheet:new(imagePath, hFrames, vFrames)
     frameWidth = 0, frameHeight = 0
   }
 
-  newSheet._imageData.source = love.graphics.newImage(imagePath)
+  if type(imagePath) == 'string' then
+    newSheet._imageData.source = love.graphics.newImage(imagePath)
+  else  newSheet._imageData.source = imagePath end
+
   if newSheet._imageData.source == nil then return nil end
 
   -- set spritesheet grid dimensions

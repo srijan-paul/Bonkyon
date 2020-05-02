@@ -1,30 +1,30 @@
 local AnimationPlayer = require('lib/AnimationPlayer')
 local Globals = require('game/GameConstants')
+local Resources = require('game/Resources')
 
 local Player = {
-  type = {
     ANGEL = 1,
     DEVIL = 2
-  }
 }
 
-function Player:new(grid, row, col)
+function Player:new(type)
   newPlayer = {}
+  newPlayer.type = type
   self.__index = self
   return setmetatable(newPlayer, self)
 end
 
-function Player:init(grid, row, col, type)
+function Player:init(grid, row, col)
   self.row , self.col = row, col
   self.currentPos = {x = 0, y = 0}
   self.desiredPos = {x = 0, y = 0}
   self.scale = 3
 
   self.moveSpeed = 10
-  if type == Player.type.DEVIL then
-    self.anim = AnimationPlayer:new('assets/images/devilGuy.png', 3, 1)
+  if self.type == Player.DEVIL then
+    self.anim = AnimationPlayer:new(Resources.DevilTexture, 3, 1)
   else
-    self.anim = AnimationPlayer:new('assets/images/angelGuy.png', 3, 1)
+    self.anim = AnimationPlayer:new(Resources.AngelTexture, 3, 1)
   end
   -- sprites for when the Player is red
 

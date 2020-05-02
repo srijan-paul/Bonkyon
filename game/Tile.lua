@@ -1,17 +1,17 @@
 local Sprite = require('lib/loveAnim/anim')
 local GameConstants = require('game/GameConstants')
+local Resources = require('game/Resources')
 
 -- local TileType = require('TileType')
 local Tile = {}
 local TILE_WIDTH = 64
 local TILE_HEIGHT = 64
 
-local TileSpriteSheet, tileQuads = {}
+local TileSpriteSheet
 
 function Tile.initTexture()
   love.graphics.setDefaultFilter('nearest', 'nearest')
-  TileSpriteSheet = Sprite.newSpriteSheet('assets/images/tileset_light.png',
-    12, 1)
+  TileSpriteSheet = Sprite.newSpriteSheet(Resources.TileTexture, 12, 1)
 end
 
 function Tile:new(type)
