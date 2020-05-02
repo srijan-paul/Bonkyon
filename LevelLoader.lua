@@ -60,8 +60,14 @@ function makeLevel(levelData)
 
   grid.angelStart = {
     row = levelData.angelStart[1] + 1,
-     col =levelData.angelStart[2] + 1
+    col =levelData.angelStart[2] + 1
   }
+
+  local gridLen = GameConstants.TILE_SIZE * grid.rows
+  local gridWidth = GameConstants.TILE_SIZE * grid.cols
+
+  grid:setPos(((GameConstants.SCREEN_WIDTH - gridLen) / 2),
+      ((GameConstants.SCREEN_HEIGHT - gridWidth) / 2))
 
   return grid
 end

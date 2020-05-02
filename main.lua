@@ -18,7 +18,6 @@ function love.load(arg)
   love.window.setMode(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT)
   -- initialize the grid
   grid = loadLevel('levels/level1.json')
-  grid:setPos(100, 100)
 
   -- create the twins
   devilTwin = Twin:new()
