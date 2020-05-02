@@ -26,7 +26,6 @@ function Player:init(grid, row, col)
   else
     self.anim = AnimationPlayer:new(Resources.AngelTexture, 3, 1)
   end
-  -- sprites for when the Player is red
 
   self.anim:add('idle', '1-2', 0.2, true)
   self.anim:add('squashed', '3-3', 1, false)
@@ -55,9 +54,11 @@ function Player:getPosOnGrid(grid)
   return posX + 10, posY
 end
 
+
 function Player:playAnim(anim)
   self.anim:play(anim)
 end
+
 
 function Player:update(dt)
   if self.currentPos.x > self.desiredPos.x then
@@ -102,10 +103,12 @@ function Player:update(dt)
   self.anim:update(dt)
 end
 
+
 function Player:isMoving()
   return (self.currentPos.x ~= self.desiredPos.x
       or self.currentPos.y ~= self.desiredPos.y)
 end
+
 
 function Player:moveLeft(grid)
   if self.col > 1 and grid.tiles[self.row][self.col - 1].pathable then

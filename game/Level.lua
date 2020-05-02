@@ -3,8 +3,10 @@ local Twin = require('game/Player')
 local Tile = require('game/Tile')
 local GameConstants = require('game/GameConstants')
 local loadLevel = require('game/LevelLoader')
+local Resources = require('game/Resources')
 
 local Level = {}
+
 
 function Level:new(lv)
   newLevel = {}
@@ -12,6 +14,7 @@ function Level:new(lv)
   self.__index = self
   return setmetatable(newLevel, self)
 end
+
 
 function Level:load()
   local path = 'levels/level' .. self.levelIndex .. '.json'
@@ -24,6 +27,7 @@ function Level:load()
   self.angelTwin:init(self.grid, self.grid.angelStart.row,
     self.grid.angelStart.col)
 end
+
 
 function Level:draw()
     self.grid:show()
@@ -55,8 +59,9 @@ function Level:handleKeyPress(key)
     self.devilTwin:updatePos(self.grid)
     self.angelTwin:updatePos(self.grid)
     if (self.devilTwin:isMoving() or self.angelTwin:isMoving()) then
-      -- jumpSound:play()
+      Resources.Audio.Jump:play()
     end
 end
+
 
 return Level
