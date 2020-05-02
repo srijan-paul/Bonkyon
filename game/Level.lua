@@ -29,7 +29,7 @@ function Level:load()
   self.angelTwin:init(self.grid, self.grid.angelStart.row,
     self.grid.angelStart.col)
 
-    love.graphics.setBackgroundColor(Util.hexToColor('#485460'))
+    -- love.graphics.setBackgroundColor(Util.hexToColor('#485460'))
 end
 
 

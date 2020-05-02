@@ -8,6 +8,7 @@ local TILE_WIDTH = 64
 local TILE_HEIGHT = 64
 
 local TileSpriteSheet
+local TILE_SCALE = 2
 
 function Tile.initTexture()
   love.graphics.setDefaultFilter('nearest', 'nearest')
@@ -50,7 +51,7 @@ end
 
 
 function Tile:show(x, y)
-  TileSpriteSheet:showFrame(self.spriteIndex, x, y, 0, 2, 2)
+  TileSpriteSheet:showFrame(self.spriteIndex, x, y, 0, TILE_SCALE, TILE_SCALE)
 end
 
 return Tile

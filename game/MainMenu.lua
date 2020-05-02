@@ -9,6 +9,8 @@ local angelSpritePos = {x = 0, y = 0}
 local devilSpritePos = {x = 0, y = 0}
 local angelAnim, devilAnim
 
+local SPRITE_SCALE = 4
+
 function MainMenu.load()
   local logoLen, logoWidth = Resources.Image.Logo:getDimensions()
   logoPos.x = (GameConstants.SCREEN_WIDTH - logoLen) / 2
@@ -33,8 +35,10 @@ end
 function MainMenu.show()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(Resources.Image.Logo, logoPos.x, logoPos.y)
-  devilAnim:show(devilSpritePos.x, devilSpritePos.y , 0, -4, 4)
-  angelAnim:show(angelSpritePos.x, angelSpritePos.y , 0, 4, 4)
+  devilAnim:show(devilSpritePos.x, devilSpritePos.y , 0
+  , -SPRITE_SCALE, SPRITE_SCALE)
+  angelAnim:show(angelSpritePos.x, angelSpritePos.y , 0,
+   SPRITE_SCALE, SPRITE_SCALE)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.print('Press Enter to start !', logoPos.x + 50, logoPos.y + 100)
 end
