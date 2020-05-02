@@ -14,6 +14,7 @@ local jumpSound
 function love.load(arg)
   pixelFont = love.graphics.newFont("assets/font/font.ttf", 20)
   love.graphics.setFont(pixelFont)
+  love.window.setTitle('Bonkyon')
   love.window.setMode(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT)
   -- initialize the grid
   grid = loadLevel('levels/level1.json')

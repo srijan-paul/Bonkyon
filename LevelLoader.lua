@@ -63,16 +63,6 @@ function makeLevel(levelData)
      col =levelData.angelStart[2] + 1
   }
 
-  grid.devilExit = {
-    row = levelData.devilEnd[1] + 1,
-    col =levelData.devilEnd[2] + 1
-  }
-
-  grid.angelExit = {
-    row = levelData.angelEnd[1] + 1,
-    col =levelData.angelEnd[2] + 1
-  }
-
   return grid
 end
 
