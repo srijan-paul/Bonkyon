@@ -12,7 +12,7 @@ function Resources.load()
   Resources.AngelTexture = love.graphics.newImage('assets/images/angelGuy.png')
   Resources.PixelFont = love.graphics.newFont('assets/font/font.ttf', 20)
   Resources.Audio.Jump = love.audio.newSource('assets/sounds/jump.wav', 'static')
-  Resources.Audio.Jump:setVolume(0.3)
+  Resources.Audio.Jump:setVolume(0.5)
   Resources.Image.Logo = love.graphics.newImage('assets/images/bonkyon_logo_final.png')
 end
 

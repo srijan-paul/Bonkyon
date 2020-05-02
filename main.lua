@@ -37,7 +37,6 @@ end
 
 function love.update(dt)
   level:update(dt)
-
 end
 
 
