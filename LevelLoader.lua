@@ -63,6 +63,7 @@ function makeLevel(levelData)
     col =levelData.angelStart[2] + 1
   }
 
+  -- centering the grid on the screen
   local gridLen = GameConstants.TILE_SIZE * grid.rows
   local gridWidth = GameConstants.TILE_SIZE * grid.cols
 
