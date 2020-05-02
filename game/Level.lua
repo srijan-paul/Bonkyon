@@ -20,6 +20,7 @@ end
 function Level:load()
   local path = 'levels/level' .. self.levelIndex .. '.json'
   self.grid = loadLevel(path)
+  self.grid:init()
   self.devilTwin = Twin:new(Twin.DEVIL)
   self.angelTwin = Twin:new(Twin.ANGEL)
 
@@ -28,7 +29,7 @@ function Level:load()
   self.angelTwin:init(self.grid, self.grid.angelStart.row,
     self.grid.angelStart.col)
 
-    love.graphics.setBackgroundColor(Util.hexToColor('323232'))
+    love.graphics.setBackgroundColor(Util.hexToColor('#485460'))
 end
 
 
