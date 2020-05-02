@@ -1,4 +1,4 @@
--- local util = require("Helpers")
+local util = require("lib/helpers")
 -- local ds = require("../lib/ds")
 -- local json = require('lib/luaJSON/json')
 --
@@ -17,5 +17,5 @@
 --
 -- local lvl = json.decode(readFile('levels/level1.json'))
 --
--- local r,g,b = util.hexToColor('120136')
-print('asd' .. 1 .. 'ada')
+local r,g,b = util.hexToColor('6886c5')
+print(r ..', ' .. g ..', '.. b)

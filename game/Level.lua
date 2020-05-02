@@ -1,6 +1,7 @@
 local Grid = require("game/Grid")
 local Twin = require('game/Player')
 local Tile = require('game/Tile')
+local Util = require('lib/helpers')
 local GameConstants = require('game/GameConstants')
 local loadLevel = require('game/LevelLoader')
 local Resources = require('game/Resources')
@@ -26,14 +27,17 @@ function Level:load()
     self.grid.devilStart.col)
   self.angelTwin:init(self.grid, self.grid.angelStart.row,
     self.grid.angelStart.col)
+
+    love.graphics.setBackgroundColor(Util.hexToColor('323232'))
 end
 
 
-function Level:draw()
+function Level:show()
     self.grid:show()
     self.devilTwin:show(grid)
     self.angelTwin:show(grid)
 end
+
 
 function Level:update(dt)
   self.devilTwin:update(dt)
@@ -55,7 +59,6 @@ function Level:handleKeyPress(key)
       self.devilTwin:moveDown(self.grid)
       self.angelTwin:moveUp(self.grid)
     end
-
     self.devilTwin:updatePos(self.grid)
     self.angelTwin:updatePos(self.grid)
     if (self.devilTwin:isMoving() or self.angelTwin:isMoving()) then
