@@ -113,7 +113,6 @@ end
 
 function launchGame()
   currentState = MenuState.TRANSITION_OUT
-  Resources.Audio.Button:play()
   Resources.Audio.WhooshOut:play()
   transitionTimerStart = love.timer.getTime()
 end

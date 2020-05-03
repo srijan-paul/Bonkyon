@@ -80,6 +80,9 @@ function Level:handleKeyPress(key)
     self.devilTwin:updatePos(self.grid)
     self.angelTwin:updatePos(self.grid)
     if (self.devilTwin:isMoving() or self.angelTwin:isMoving()) then
+      if Resources.Audio.Jump:isPlaying() then
+        Resources.Audio.Jump:stop()
+      end
       Resources.Audio.Jump:play()
     end
 end

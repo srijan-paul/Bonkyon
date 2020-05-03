@@ -60,7 +60,13 @@ function UIButton:show(x, y)
       self.state = ButtonState.PRESSED
       self.pressed = true
     elseif self.pressed then
-      if self.clickHandler then self.clickHandler() end
+      if Resources.Audio.Button:isPlaying() then
+        Resources.Audio.Button:stop()
+      end
+      Resources.Audio.Button:play()
+      if self.clickHandler then
+         self.clickHandler()
+       end
       self.pressed = false
     end
   else self.state = ButtonState.IDLE end
