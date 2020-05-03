@@ -1,3 +1,4 @@
+
 local util = require("lib/Helpers")
 local Resources = require('game/Resources')
 local GameConstants = require('game/GameConstants')
@@ -9,12 +10,11 @@ local level
 local menu = require('game/MainMenu')
 
 function love.load(arg)
-  -- set filter so the image imports are not blurry
+  love.window.setMode(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT)
   Resources.load()
   Tile.initTexture()
   love.graphics.setFont(Resources.Fonts.MenuFont)
   love.window.setTitle('Bonkyon')
-  love.window.setMode(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT)
   love.graphics.setBackgroundColor(util.hexToColor('212121'))
   StateManager:init()
 

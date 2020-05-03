@@ -58,6 +58,7 @@ function MainMenu.load()
    -- playBtn:onClick()
    btnContainer:add(tutBtn)
    Resources.Audio.WhooshIn:play()
+   Resources.Audio.Track:play()
 end
 
 
@@ -99,8 +100,10 @@ function MainMenu:update(dt)
       currentState = MenuState.IDLE
     end
   elseif currentState == MenuState.TRANSITION_OUT then
-    MenuPosition.y = MenuPosition.y - TRANSITION_OUT_SPEED
-    if love.timer.getTime() - transitionTimerStart > 0.5 then
+    if love.timer.getTime() - transitionTimerStart > 0.1 then
+      MenuPosition.y = MenuPosition.y - TRANSITION_OUT_SPEED
+    end
+    if MenuPosition.y < -GameConstants.SCREEN_WIDTH then
       MainMenu.stateManager.switchState(GameConstants.State.PLAYING, 1)
     end
   end
@@ -110,6 +113,7 @@ end
 
 function launchGame()
   currentState = MenuState.TRANSITION_OUT
+  Resources.Audio.Button:play()
   Resources.Audio.WhooshOut:play()
   transitionTimerStart = love.timer.getTime()
 end
