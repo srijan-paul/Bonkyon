@@ -1,5 +1,6 @@
   local SpriteSheet = {}
 
+
 function SpriteSheet:new(imagePath, hFrames, vFrames)
   newSheet = {
     _imageData = {source = nil, rows = 0, cols = 0},
@@ -42,6 +43,7 @@ function SpriteSheet:new(imagePath, hFrames, vFrames)
   return setmetatable(newSheet, self)
 end
 
+
 function SpriteSheet:showFrame(frameIndex, x, y, r, sx, sy)
 
   if frameIndex > table.getn(self._frames) or frameIndex <= 0 then
@@ -53,6 +55,7 @@ function SpriteSheet:showFrame(frameIndex, x, y, r, sx, sy)
       self._frames[frameIndex],
       x, y, r, sx, sy)
 end
+
 
 -- The animation table contains data about the the 'Frame set' which is a
 -- collection of frames in a spritesheet.

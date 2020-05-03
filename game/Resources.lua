@@ -1,7 +1,8 @@
 local name = require "lib/loveAnim/anim"
 local Resources = {
   Audio = {},
-  Image = {}
+  Image = {},
+  UITexture = {}
 }
 
 
@@ -15,6 +16,7 @@ function Resources.load()
   Resources.Audio.Jump = love.audio.newSource('assets/sounds/jump.wav', 'static')
   Resources.Audio.Jump:setVolume(0.5)
   Resources.Image.Logo = love.graphics.newImage('assets/images/bonkyon_logo_final.png')
+  Resources.UITexture.Button = love.graphics.newImage('assets/images/button_pink.png')
 end
 
 

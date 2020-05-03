@@ -19,3 +19,18 @@ local util = require("lib/helpers")
 --
 local r,g,b = util.hexToColor('6886c5')
 print(r ..', ' .. g ..', '.. b)
+
+grd = {
+  {}, {}, {}
+}
+
+local x = false
+for i = 1, 3 do
+    if x then break end
+  for j = 1, 1 do
+    if grd[i][j] == nil then
+      print(i, j)
+      x = true break
+    end
+  end
+end

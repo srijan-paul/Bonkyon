@@ -4,8 +4,6 @@ local Resources = require('game/Resources')
 
 -- local TileType = require('TileType')
 local Tile = {}
-local TILE_WIDTH = 64
-local TILE_HEIGHT = 64
 
 local TileSpriteSheet
 local TILE_SCALE = 2
