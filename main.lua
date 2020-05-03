@@ -12,7 +12,7 @@ function love.load(arg)
   -- set filter so the image imports are not blurry
   Resources.load()
   Tile.initTexture()
-  love.graphics.setFont(Resources.PixelFont)
+  love.graphics.setFont(Resources.Fonts.MenuFont)
   love.window.setTitle('Bonkyon')
   love.window.setMode(GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT)
   love.graphics.setBackgroundColor(util.hexToColor('212121'))

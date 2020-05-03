@@ -19,7 +19,7 @@ function MainMenu.load()
   local logoLen, logoWidth = Resources.Image.Logo:getDimensions()
   logoPos.x = (GameConstants.SCREEN_WIDTH - logoLen) / 2
   logoPos.y = (GameConstants.SCREEN_HEIGHT - logoWidth) / 2
-  
+
   MainMenu.stateManager = require('game/StateManager')
 
   devilSpritePos = {x = logoPos.x + logoLen + 70, y = logoPos.y}
@@ -39,8 +39,7 @@ function MainMenu.load()
    btnContainer = UIContainer:new(3, 1)
    playBtn = UIButton:new('PLAY')
    tutBtn = UIButton:new('TUTORIAL')
-   playBtn:setTextPos(50, 10)
-   btnContainer:setPadding(10, 30)
+   btnContainer:setPadding(10, 10)
    btnContainer:add(playBtn)
    btnContainer:add(tutBtn)
 end

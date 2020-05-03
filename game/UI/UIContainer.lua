@@ -26,13 +26,12 @@ function UIContainer:show(x, y)
       local btn = self.grid[i][j]
       if btn then
         btn:show(x + xOff, y + yOff)
-        xOff = xOff + btn.length + self.xPad
-        love.graphics.print(i)
+        xOff = xOff + btn:width() + self.xPad
       end
        -- xOff = xOff + self.xPad
     end
     xOff = 0
-    if self.grid[i][1] then yOff = self.grid[i][1].width end
+    if self.grid[i][1] then yOff = self.grid[i][1]:height() end
     yOff = yOff + self.yPad
   end
 end
