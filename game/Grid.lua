@@ -50,8 +50,8 @@ function Grid:init()
 end
 
 
-function Grid:show()
-  love.graphics.draw(self._canvas)
+function Grid:show(x, y)
+  love.graphics.draw(self._canvas, x, y)
 end
 
 

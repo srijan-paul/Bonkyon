@@ -14,6 +14,19 @@ local angelAnim, devilAnim
 local SPRITE_SCALE = 4
 local btnContainer
 
+-- everything is drawn with respect to the menu position
+local MenuPosition = {x = 0, y = -GameConstants.SCREEN_HEIGHT * 1.5}
+local TRANSITION_IN_SPEED = 40
+local TRANSITION_OUT_SPEED = 40
+local MenuState = {
+  IDLE = 1,
+  TRANSITION_IN = 2,
+  TRANSITION_OUT = 3,
+  COLOR_SHIFT = 4
+}
+
+local currentState = MenuState.TRANSITION_IN
+local transitionTimerStart = 0
 
 function MainMenu.load()
   local logoLen, logoWidth = Resources.Image.Logo:getDimensions()
@@ -38,22 +51,32 @@ function MainMenu.load()
 
    btnContainer = UIContainer:new(3, 1)
    playBtn = UIButton:new('PLAY')
+   playBtn:onClick(launchGame)
    tutBtn = UIButton:new('TUTORIAL')
    btnContainer:setPadding(10, 10)
    btnContainer:add(playBtn)
+   -- playBtn:onClick()
    btnContainer:add(tutBtn)
+   Resources.Audio.WhooshIn:play()
 end
 
 
 function MainMenu.show()
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.draw(Resources.Image.Logo, logoPos.x, logoPos.y)
-  devilAnim:show(devilSpritePos.x, devilSpritePos.y , 0
-  , -SPRITE_SCALE, SPRITE_SCALE)
-  angelAnim:show(angelSpritePos.x, angelSpritePos.y , 0,
+  love.graphics.draw(Resources.Image.Logo, MenuPosition.x + logoPos.x,
+  MenuPosition.y + logoPos.y)
+
+  devilAnim:show(MenuPosition.x + devilSpritePos.x,
+   MenuPosition.y +devilSpritePos.y,
+    0, -SPRITE_SCALE, SPRITE_SCALE)
+
+  angelAnim:show(MenuPosition.x + angelSpritePos.x,
+   MenuPosition.y + angelSpritePos.y, 0,
    SPRITE_SCALE, SPRITE_SCALE)
+
   love.graphics.setColor(1, 1, 1, 1)
-  btnContainer:show(logoPos.x + 80, logoPos.y + 100)
+  btnContainer:show(MenuPosition.x + logoPos.x + 80,
+    MenuPosition.y + logoPos.y + 100)
 end
 
 
@@ -68,7 +91,27 @@ function MainMenu:update(dt)
   devilAnim:update(dt)
   angelAnim:update(dt)
   btnContainer:update(dt)
+
+  if currentState == MenuState.TRANSITION_IN then
+    MenuPosition.y = MenuPosition.y + TRANSITION_IN_SPEED
+    if MenuPosition.y > 0 then
+      MenuPosition.y = 0
+      currentState = MenuState.IDLE
+    end
+  elseif currentState == MenuState.TRANSITION_OUT then
+    MenuPosition.y = MenuPosition.y - TRANSITION_OUT_SPEED
+    if love.timer.getTime() - transitionTimerStart > 0.5 then
+      MainMenu.stateManager.switchState(GameConstants.State.PLAYING, 1)
+    end
+  end
+
 end
 
+
+function launchGame()
+  currentState = MenuState.TRANSITION_OUT
+  Resources.Audio.WhooshOut:play()
+  transitionTimerStart = love.timer.getTime()
+end
 
 return MainMenu

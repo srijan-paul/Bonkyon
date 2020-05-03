@@ -26,7 +26,7 @@ function UIButton:new(txt)
   self.currentFrame = 1
 
   self.state = ButtonState.IDLE
-  self.preState = nil -- previous state
+  self.pressed = false
 
   local textWidth, textHeight = Resources.Fonts.MenuFont:getWidth(txt),
      Resources.Fonts.MenuFont:getHeight(txt) + TEXT_PIXEL_OFFSET
@@ -56,7 +56,13 @@ end
 function UIButton:show(x, y)
   if UIButton._checkHover(self, x, y) then
     self.state = ButtonState.HOVER
-    if love.mouse.isDown(1) then self.state = ButtonState.PRESSED end
+    if love.mouse.isDown(1) then
+      self.state = ButtonState.PRESSED
+      self.pressed = true
+    elseif self.pressed then
+      if self.clickHandler then self.clickHandler() end
+      self.pressed = false
+    end
   else self.state = ButtonState.IDLE end
 
   btnTexture:showFrame(self.currentFrame, x, y, 0, self.scaleX, self.scaleY)

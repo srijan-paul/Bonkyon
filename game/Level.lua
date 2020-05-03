@@ -6,12 +6,21 @@ local GameConstants = require('game/GameConstants')
 local loadLevel = require('game/LevelLoader')
 local Resources = require('game/Resources')
 
-local Level = {}
 
+local LevelState = {
+  TRANSITION_IN = 0,
+  ACTIVE = 1,
+  TRANSITION_OUT = 2
+}
+
+local Level = {}
+local levelYPos = -GameConstants.SCREEN_HEIGHT
+local TRANSITION_SPEED = 40
 
 function Level:new(lv)
   newLevel = {}
   newLevel.levelIndex = 1
+  newLevel.state = LevelState.TRANSITION_IN
   self.__index = self
   return setmetatable(newLevel, self)
 end
@@ -30,17 +39,25 @@ function Level:load()
     self.grid.angelStart.col)
 
     -- love.graphics.setBackgroundColor(Util.hexToColor('#485460'))
+    Resources.Audio.WhooshIn:play()
 end
 
 
 function Level:show()
-    self.grid:show()
-    self.devilTwin:show(grid)
-    self.angelTwin:show(grid)
+    self.grid:show(0, levelYPos)
+    self.devilTwin:show(grid, 0, levelYPos)
+    self.angelTwin:show(grid, 0, levelYPos)
 end
 
 
 function Level:update(dt)
+  if self.state == LevelState.TRANSITION_IN then
+    levelYPos = levelYPos + TRANSITION_SPEED
+    if levelYPos > 0 then
+      levelYPos = 0
+      self.state = ACTIVE
+    end
+  end
   self.devilTwin:update(dt)
   self.angelTwin:update(dt)
 end

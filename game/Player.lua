@@ -40,10 +40,11 @@ function Player:init(grid, row, col)
 end
 
 
-function Player:show(grid)
+function Player:show(grid, xOff, yOff)
   if self.anim.currentAnim then
-    self.anim:show(self.currentPos.x, self.currentPos.y,
-      0, self.spriteDir.x * self.scale, self.scale)
+    self.anim:show(self.currentPos.x + (xOff or 0),
+        self.currentPos.y + (yOff or 0),
+        0, self.spriteDir.x * self.scale, self.scale)
   end
 end
 
