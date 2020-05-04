@@ -4,7 +4,12 @@ local GameConstants = require('game/GameConstants')
 local loadLevel = require('game/LevelLoader')
 local Resources = require('game/Resources')
 
-local LevelState = {TRANSITION_IN = 0, ACTIVE = 1, TRANSITION_OUT = 2}
+local LevelState = {
+    TRANSITION_IN = 0,
+    ACTIVE = 1,
+    TRANSITION_OUT = 2,
+    GAME_OVER = 3
+}
 
 local Level = {}
 local levelYPos = -GameConstants.SCREEN_HEIGHT
@@ -63,16 +68,11 @@ function Level:update(dt)
     self.angelTwin:update(dt)
 
     -- it would be better to make this event driven but for a small game like
-    -- this it doesn't make THAT big of a difference
-
-    if self:isOnWinTile(self.devilTwin) and self.state == LevelState.ACTIVE then
-        if self:isOnWinTile(self.angelTwin) then
-            self:launchNextLevel()
-        else
-            self:gameOver()
-        end
-    elseif self:isOnWinTile(self.angelTwin) and self.state == LevelState.ACTIVE then
-        self:gameOver()
+    -- this it doesn't make THAT big of a difference. Even so...
+    -- TODO: maket this portion of the code event driven
+    if self.state == LevelState.ACTIVE then
+        if self:checkGameOver() then self:gameOver() end
+        if self:checkWin() then self:launchNextLevel() end
     end
 end
 
@@ -132,10 +132,20 @@ function Level:gameOver()
 end
 
 function Level:checkGameOver()
-    return (self.grid.getTileType(self.angelTwin.row, self.angelTwin.col) ==
-               Tile.DEVIL_END or
-               self.grid.getTileType(self.devilTwin.row, self.devilTwin.col) ==
-               Tile.ANGEL_END)
+    if self:isOnWinTile(self.angelTwin) then
+        if not self:isOnWinTile(self.devilTwin) then return true end
+    end
+    if self:isOnWinTile(self.devilTwin) then
+        if not self:isOnWinTile(self.angelTwin) then return true end
+    end
+    if (self.grid:getTileType(self.angelTwin.row, self.angelTwin.col) ==
+        Tile.DEVIL_END) then return true end
+    if (self.grid:getTileType(self.devilTwin.row, self.devilTwin.col) ==
+        Tile.ANGEL_END) then return true end
+end
+
+function Level:checkWin()
+    return self:isOnWinTile(self.angelTwin) and self:isOnWinTile(self.devilTwin)
 end
 
 return Level
