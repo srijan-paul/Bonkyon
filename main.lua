@@ -35,7 +35,3 @@ function love.keypressed(key)
   StateManager.handleKeyPress(key)
 end
 
-
-function gameOver()
-  love.graphics.print('GAME OVEER')
-end

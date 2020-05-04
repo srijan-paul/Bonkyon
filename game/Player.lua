@@ -7,7 +7,7 @@ local Player = {
     DEVIL = 2
 }
 
-local FLASH_INTERVAL = 0.2
+
 local FLASH_DURATION = 0.2
 
 function Player:new(type)
