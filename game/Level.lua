@@ -49,8 +49,6 @@ function Level:show()
     self.grid:show(0, levelYPos)
     self.devilTwin:show(grid, 0, levelYPos)
     self.angelTwin:show(grid, 0, levelYPos)
-    -- love.graphics.print(love.timer.getTime())
-    -- love.graphics.print((self.transitionTimerStart or 1), 20, 10)
 end
 
 
@@ -76,7 +74,11 @@ function Level:update(dt)
   if self:isOnWinTile(self.devilTwin) and self.state == LevelState.ACTIVE then
     if self:isOnWinTile(self.angelTwin) then
         self:launchNextLevel()
+    else
+      --game over
     end
+  else
+    --game over
   end
 end
 

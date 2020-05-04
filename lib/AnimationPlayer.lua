@@ -32,7 +32,6 @@ end
 
 
 function AnimationPlayer:show(x, y, r, sx, sy)
-  love.graphics.setColor(1, 1, 1)
   self.currentAnim:show(x, y, r, sx, sy)
 end
 

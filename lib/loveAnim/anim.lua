@@ -50,7 +50,6 @@ function SpriteSheet:showFrame(frameIndex, x, y, r, sx, sy)
     return nil
   end
 
-  love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(self._imageData.source,
       self._frames[frameIndex],
       x, y, r, sx, sy)

@@ -49,6 +49,7 @@ end
 
 
 function Tile:show(x, y)
+  love.graphics.setColor(1, 1, 1, 1)
   TileSpriteSheet:showFrame(self.spriteIndex, x, y, 0, TILE_SCALE, TILE_SCALE)
 end
 

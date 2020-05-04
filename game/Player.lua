@@ -7,10 +7,16 @@ local Player = {
     DEVIL = 2
 }
 
+local FLASH_INTERVAL = 0.2
+local FLASH_DURATION = 0.2
+
 function Player:new(type)
   newPlayer = {}
   newPlayer.type = type
   self.__index = self
+  self.flashing = true
+  self.lastFlashTime = 0
+  self.flashMode = false
   return setmetatable(newPlayer, self)
 end
 
@@ -41,6 +47,10 @@ end
 
 
 function Player:show(grid, xOff, yOff)
+  if self.flashing then
+    love.graphics.setColor(1, 1, 0, 1)
+  else love.graphics.setColor(1, 1, 1, 1) end
+
   if self.anim.currentAnim then
     self.anim:show(self.currentPos.x + (xOff or 0),
         self.currentPos.y + (yOff or 0),
@@ -62,6 +72,15 @@ end
 
 
 function Player:update(dt)
+  --
+  if self.flashMode then
+    local time = love.timer.getTime()
+    if time - self.lastFlashTime > FLASH_DURATION then
+      self.lastFlashTime = time
+      self.flashing = not self.flashing
+    end
+  else self.flashing = false end
+
   if self.currentPos.x > self.desiredPos.x then
     -- if Player moved past the desired spot
     if self.spriteDir.x == 1 then

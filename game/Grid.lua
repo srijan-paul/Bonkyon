@@ -51,6 +51,7 @@ end
 
 
 function Grid:show(x, y)
+  love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(self._canvas, x, y)
 end
 
