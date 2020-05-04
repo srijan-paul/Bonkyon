@@ -27,7 +27,7 @@ function Resources.load()
   Resources.Audio.WhooshIn = love.audio.newSource('assets/sounds/60029__qubodup__swosh-42.flac', 'static')
   Resources.Audio.Button = love.audio.newSource('assets/sounds/219477__jarredgibb__button-04.wav', 'static')
   Resources.Audio.Track = love.audio.newSource('assets/sounds/166392__questiion__8bit-blix-aka-lost-moons-make-me-a-game-snippet-notify-if-longer-version-is-needed.wav', 'static')
-  Resources.Audio.Track:setVolume(0.5)
+  Resources.Audio.Track:setVolume(0.8)
   Resources.Audio.Track:setLooping(true)
 end
 

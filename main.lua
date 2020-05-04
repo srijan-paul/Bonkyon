@@ -5,7 +5,7 @@ local Level = require('game/Level')
 local StateManager = require('game/StateManager')
 local Tile = require('game/Tile')
 
-local level
+
 local menu = require('game/MainMenu')
 
 function love.load(arg)

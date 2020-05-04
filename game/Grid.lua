@@ -60,5 +60,10 @@ function Grid:getTilePos(r, c)
     self.y + (GameConstants.TILE_SIZE * (r - 1))
 end
 
+function Grid:getTileType(r, c)
+  if self.tiles[r] and self.tiles[r][c] then
+    return self.tiles[r][c].type
+  end
+end
 
 return Grid

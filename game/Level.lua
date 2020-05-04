@@ -16,6 +16,8 @@ local LevelState = {
 local Level = {}
 local levelYPos = -GameConstants.SCREEN_HEIGHT
 local TRANSITION_SPEED = 40
+local LEVEL_MIN_HEIGHT = -GameConstants.SCREEN_HEIGHT
+local LEVEL_SWITCH_WAIT_TIME = 1
 
 function Level:new(lv)
   newLevel = {}
@@ -27,6 +29,7 @@ end
 
 
 function Level:load()
+  self.stateManager = require('game/StateManager')
   local path = 'levels/level' .. self.levelIndex .. '.json'
   self.grid = loadLevel(path)
   self.grid:init()
@@ -38,7 +41,6 @@ function Level:load()
   self.angelTwin:init(self.grid, self.grid.angelStart.row,
     self.grid.angelStart.col)
 
-    -- love.graphics.setBackgroundColor(Util.hexToColor('#485460'))
     Resources.Audio.WhooshIn:play()
 end
 
@@ -47,6 +49,8 @@ function Level:show()
     self.grid:show(0, levelYPos)
     self.devilTwin:show(grid, 0, levelYPos)
     self.angelTwin:show(grid, 0, levelYPos)
+    -- love.graphics.print(love.timer.getTime())
+    -- love.graphics.print((self.transitionTimerStart or 1), 20, 10)
 end
 
 
@@ -57,9 +61,23 @@ function Level:update(dt)
       levelYPos = 0
       self.state = LevelState.ACTIVE
     end
+  elseif self.state == LevelState.TRANSITION_OUT then
+    if self:transitionTimerTimeout() then
+      levelYPos = levelYPos - TRANSITION_SPEED
+      if levelYPos < LEVEL_MIN_HEIGHT then
+        self.stateManager.switchState(GameConstants.State.PLAYING,
+          self.levelIndex + 1)
+      end
+    end
   end
+
   self.devilTwin:update(dt)
   self.angelTwin:update(dt)
+  if self:isOnWinTile(self.devilTwin) and self.state == LevelState.ACTIVE then
+    if self:isOnWinTile(self.angelTwin) then
+        self:launchNextLevel()
+    end
+  end
 end
 
 
@@ -88,5 +106,31 @@ function Level:handleKeyPress(key)
     end
 end
 
+
+function Level:isOnWinTile(twin)
+  if twin.type == Twin.DEVIL then
+    return self.grid:getTileType(twin.row, twin.col)
+      == GameConstants.Tile.DEVIL_END
+  else
+    return self.grid:getTileType(twin.row, twin.col)
+        == GameConstants.Tile.ANGEL_END
+  end
+end
+
+
+function Level:launchNextLevel()
+  self.state = LevelState.TRANSITION_OUT
+  self.transitionTimerStart = love.timer.getTime()
+end
+
+
+function Level:transitionTimerTimeout()
+  if not self.transitionTimerStart then return false end
+  if love.timer.getTime() - self.transitionTimerStart > LEVEL_SWITCH_WAIT_TIME then
+    Resources.Audio.WhooshOut:play()
+    return true
+  end
+  return false
+end
 
 return Level
