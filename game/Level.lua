@@ -19,7 +19,7 @@ local TRANSITION_SPEED = 40
 
 function Level:new(lv)
   newLevel = {}
-  newLevel.levelIndex = 1
+  newLevel.levelIndex = lv
   newLevel.state = LevelState.TRANSITION_IN
   self.__index = self
   return setmetatable(newLevel, self)
@@ -55,7 +55,7 @@ function Level:update(dt)
     levelYPos = levelYPos + TRANSITION_SPEED
     if levelYPos > 0 then
       levelYPos = 0
-      self.state = ACTIVE
+      self.state = LevelState.ACTIVE
     end
   end
   self.devilTwin:update(dt)
@@ -64,18 +64,19 @@ end
 
 
 function Level:handleKeyPress(key)
+  if self.state ~= LevelState.ACTIVE then return end
     if key == 'a' then
-      self.devilTwin:moveLeft(self.grid)
-      self.angelTwin:moveRight(self.grid)
-    elseif key == 'd' then
       self.devilTwin:moveRight(self.grid)
       self.angelTwin:moveLeft(self.grid)
+    elseif key == 'd' then
+      self.devilTwin:moveLeft(self.grid)
+      self.angelTwin:moveRight(self.grid)
     elseif key == 'w' then
-      self.devilTwin:moveUp(self.grid)
-      self.angelTwin:moveDown(self.grid)
-    elseif key == 's' then
       self.devilTwin:moveDown(self.grid)
       self.angelTwin:moveUp(self.grid)
+    elseif key == 's' then
+      self.devilTwin:moveUp(self.grid)
+      self.angelTwin:moveDown(self.grid)
     end
     self.devilTwin:updatePos(self.grid)
     self.angelTwin:updatePos(self.grid)

@@ -5,6 +5,7 @@ local AnimationPlayer = require('lib/AnimationPlayer')
 local Resources = require('game/Resources')
 local UIContainer = require('game/UI/UIContainer')
 local UIButton = require('game/UI/UIButton')
+local SaveGame = require('game/Save')
 
 local logoPos = {x = 0, y = 0}
 local angelSpritePos = {x = 0, y = 0}
@@ -27,8 +28,17 @@ local MenuState = {
 
 local currentState = MenuState.TRANSITION_IN
 local transitionTimerStart = 0
+local oldSave = nil -- an older save file
 
 function MainMenu.load()
+
+  -- look for saved games
+  oldSave = SaveGame.load()
+  if not oldSave then
+    oldSave = {tutorial = false , level = 1}
+    SaveGame.save(oldSave)
+  end
+
   local logoLen, logoWidth = Resources.Image.Logo:getDimensions()
   logoPos.x = (GameConstants.SCREEN_WIDTH - logoLen) / 2
   logoPos.y = (GameConstants.SCREEN_HEIGHT - logoWidth) / 2
@@ -104,7 +114,7 @@ function MainMenu:update(dt)
       MenuPosition.y = MenuPosition.y - TRANSITION_OUT_SPEED
     end
     if MenuPosition.y < -GameConstants.SCREEN_WIDTH then
-      MainMenu.stateManager.switchState(GameConstants.State.PLAYING, 1)
+      MainMenu.stateManager.switchState(GameConstants.State.PLAYING, oldSave.level)
     end
   end
 
