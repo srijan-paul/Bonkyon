@@ -5,6 +5,10 @@ local util = require('lib/Helpers')
 local loadLevel = require("game/LevelLoader")
 local Resources = require("game/Resources")
 
+-- there is a lot of dirty code in this file
+-- apologies to anyone trying to understand any of this.
+-- Note to self : Refactor as I go in future projects
+
 local LevelState = {
     TRANSITION_IN = 0,
     ACTIVE = 1,
@@ -148,6 +152,8 @@ end
 
 function Level:launchNextLevel()
     self.state = LevelState.TRANSITION_OUT
+    self.grid:changeTileType(self.angelTwin.row, self.angelTwin.col, GameConstants.Tile.ANGEL_WIN)
+    self.grid:changeTileType(self.devilTwin.row, self.devilTwin.col, GameConstants.Tile.DEVIL_WIN)
     Resources.Audio.Win:play()
     self.transitionTimerStart = love.timer.getTime()
 end

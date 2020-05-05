@@ -63,4 +63,17 @@ function Grid:getTileType(r, c)
     end
 end
 
+function Grid:getTile(r, c)
+    if not self.tiles[r] then return nil end
+    return self.tiles[r][c]
+end
+
+function Grid:changeTileType(r, c, type)
+    local tile = self:getTile(r, c)
+    if tile then
+        tile:setType(type)
+        self:init()
+    end
+end
+
 return Grid

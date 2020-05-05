@@ -10,7 +10,7 @@ function Resources.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
 
     -- Textures and spritesheets
-    Resources.TileTexture = love.graphics.newImage("assets/images/tileset_light.png")
+    Resources.TileTexture = love.graphics.newImage("assets/images/tileset_light_2t.png")
     Resources.DevilTexture = love.graphics.newImage("assets/images/devilGuy.png")
     Resources.AngelTexture = love.graphics.newImage("assets/images/angelGuy.png")
     Resources.UITexture.Button = love.graphics.newImage("assets/images/button_pink.png")

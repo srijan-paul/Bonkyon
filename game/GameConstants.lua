@@ -12,7 +12,9 @@ local GameConstants = {
         BRICK_RIGHT = 8,
         BRICK_BOT = 9,
         DEVIL_END = 10,
-        ANGEL_END = 11
+        ANGEL_END = 11,
+        ANGEL_WIN = 12,
+        DEVIL_WIN = 14
     },
     TILE_SIZE = 64,
     SCREEN_WIDTH = 1024,
