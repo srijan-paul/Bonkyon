@@ -35,7 +35,7 @@ function MainMenu.load()
   -- look for saved games
   oldSave = SaveGame.load()
   if not oldSave then
-    oldSave = {tutorial = false , level = 1}
+    oldSave = {tutorial = false , level = 0}
     SaveGame.save(oldSave)
   end
 

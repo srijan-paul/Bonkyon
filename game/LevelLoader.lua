@@ -11,7 +11,7 @@ local TILE_IDS = {
 
 function loadLevel(path)
     local levelData = json.decode(readFile(path))
-    return makeLevel(levelData)
+    return {grid = makeLevel(levelData), text = levelData.text}
 end
 
 function readFile(path)
@@ -51,11 +51,12 @@ function makeLevel(levelData)
     grid.tiles[levelData.rows + 2][1] = Tile:new()
     grid.tiles[levelData.rows + 2][levelData.cols + 2] = Tile:new()
 
-    grid.devilStart = {
-        row = levelData.devilStart[1] + 1,
-        col = levelData.devilStart[2] + 1
-    }
-
+    if levelData.devilStart then
+        grid.devilStart = {
+            row = levelData.devilStart[1] + 1,
+            col = levelData.devilStart[2] + 1
+        }
+    end
     grid.angelStart = {
         row = levelData.angelStart[1] + 1,
         col = levelData.angelStart[2] + 1

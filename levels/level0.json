@@ -1,0 +1,11 @@
+{
+  "rows": 3,
+  "cols": 3,
+  "map": [
+    [1, 1, 4],
+    [1, 1, 1],
+    [1, 1, 1]
+  ],
+  "angelStart": [1, 1],
+  "text": "Bonky the angel is stuck in limbo !\nHelp him reach heaven by moving him to the tile etched with his face.\nUse WSAD to move"
+}

@@ -167,4 +167,5 @@ function Player:moveTo(grid, row, col)
     self.desiredPos.x, self.desiredPos.y = self:getPosOnGrid(grid)
 end
 
+
 return Player
