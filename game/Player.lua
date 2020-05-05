@@ -160,4 +160,11 @@ function Player:updatePos(grid)
     self.desiredPos.x, self.desiredPos.y = self:getPosOnGrid(grid)
 end
 
+
+function Player:moveTo(grid, row, col)
+    self.row, self.col = row, col
+    self.currentPos.x, self.currentPos.y = self:getPosOnGrid(grid)
+    self.desiredPos.x, self.desiredPos.y = self:getPosOnGrid(grid)
+end
+
 return Player

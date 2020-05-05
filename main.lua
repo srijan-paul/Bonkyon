@@ -7,7 +7,6 @@ function love.load(arg)
     Resources.load()
     Tile.initTexture()
     love.graphics.setFont(Resources.Fonts.MenuFont)
-    love.graphics.setBackgroundColor(util.hexToColor('212121'))
     StateManager:init()
 
     -- the hexToColor function should not be used extensively in a game's update
