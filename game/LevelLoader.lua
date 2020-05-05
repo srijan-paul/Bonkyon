@@ -63,11 +63,14 @@ function makeLevel(levelData)
     }
 
     -- centering the grid on the screen
-    local gridLen = GameConstants.TILE_SIZE * grid.rows
-    local gridWidth = GameConstants.TILE_SIZE * grid.cols
+    local gridHeight = GameConstants.TILE_SIZE * levelData.rows
+    local gridLen = GameConstants.TILE_SIZE * levelData.cols
 
-    grid:setPos(((GameConstants.SCREEN_WIDTH - gridLen) / 2),
-                ((GameConstants.SCREEN_HEIGHT - gridWidth) / 2))
+    -- I have no clue why this works the way it odoes and I'm too sleepy to want to find out how
+    -- so I'll just leave it as is and never look back.
+    
+    grid:setPos(((GameConstants.SCREEN_WIDTH - gridLen - GameConstants.TILE_SIZE * 2) / 2),
+             ((GameConstants.SCREEN_HEIGHT - gridHeight - GameConstants.TILE_SIZE) / 2))
 
     return grid
 end

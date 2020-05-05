@@ -124,7 +124,7 @@ end
 
 function Level:handleKeyPress(key)
     if self.state ~= LevelState.ACTIVE then return end
-
+    if not (key == 'a' or key == 'd'or key =='w' or key =='s') then return end
     moveTwin(self.angelTwin, key, self.grid)
     moveTwin(self.devilTwin, key, self.grid)
 
