@@ -25,7 +25,6 @@ local LEVEL_SWITCH_WAIT_TIME = 1
 local gameOverRectLen = 0
 local GAME_OVER_FADE_OUT_SPEED = 30
 
-
 function Level:new(lv)
     local newLevel = {}
     newLevel.levelIndex = lv

@@ -14,6 +14,7 @@ function Resources.load()
     Resources.DevilTexture = love.graphics.newImage("assets/images/devilGuy.png")
     Resources.AngelTexture = love.graphics.newImage("assets/images/angelGuy.png")
     Resources.UITexture.Button = love.graphics.newImage("assets/images/button_pink.png")
+    Resources.UITexture.RewindBtn = love.graphics.newImage('assets/images/rewind_btn.png')
     -- Fonts
     Resources.Fonts.PixelFont = love.graphics.newFont("assets/font/font.ttf", 20)
     Resources.Fonts.PixelFontLarge = love.graphics.newFont("assets/font/font.ttf", 30)
@@ -30,7 +31,7 @@ function Resources.load()
         "assets/sounds/166392__questiion__8bit-blix-aka-lost-moons-make-me-a-game-snippet-notify-if-longer-version-is-needed.wav",
         "static"
     )
-    Resources.Audio.Track:setVolume(0.8)
+    Resources.Audio.Track:setVolume(0.6)
     Resources.Audio.Track:setLooping(true)
     Resources.Audio.GameOver = love.audio.newSource("assets/sounds/442127__euphrosyyn__8-bit-game-over.wav", "static")
     Resources.Audio.Win = love.audio.newSource("assets/sounds/253887__themusicalnomad__positive-beeps.wav", "static")
