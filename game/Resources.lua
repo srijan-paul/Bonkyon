@@ -14,7 +14,6 @@ function Resources.load()
     Resources.DevilTexture = love.graphics.newImage("assets/images/devilGuy.png")
     Resources.AngelTexture = love.graphics.newImage("assets/images/angelGuy.png")
     Resources.UITexture.Button = love.graphics.newImage("assets/images/button_pink.png")
-    Resources.UITexture.RewindBtn = love.graphics.newImage('assets/images/rewind_btn.png')
     -- Fonts
     Resources.Fonts.PixelFont = love.graphics.newFont("assets/font/font.ttf", 20)
     Resources.Fonts.PixelFontLarge = love.graphics.newFont("assets/font/font.ttf", 30)
