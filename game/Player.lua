@@ -1,6 +1,6 @@
-local AnimationPlayer = require('lib/AnimationPlayer')
-local Globals = require('game/GameConstants')
-local Resources = require('game/Resources')
+local AnimationPlayer = require("lib/AnimationPlayer")
+local Globals = require("game/GameConstants")
+local Resources = require("game/Resources")
 
 local Player = {ANGEL = 1, DEVIL = 2}
 
@@ -29,11 +29,11 @@ function Player:init(grid, row, col)
         self.anim = AnimationPlayer:new(Resources.AngelTexture, 3, 1)
     end
 
-    self.anim:add('idle', '1-2', 0.2, true)
-    self.anim:add('squashed', '3-3', 1, false)
+    self.anim:add("idle", "1-2", 0.2, true)
+    self.anim:add("squashed", "3-3", 1, false)
 
     love.graphics.setColor(1, 1, 1)
-    self.anim:play('idle')
+    self.anim:play("idle")
     self.spriteDir = {x = -1, y = -1}
     -- whether the Player is facing left (-1) or right(1)
 
@@ -49,19 +49,27 @@ function Player:show(grid, xOff, yOff)
     end
 
     if self.anim.currentAnim then
-        self.anim:show(self.currentPos.x + (xOff or 0),
-                       self.currentPos.y + (yOff or 0), 0,
-                       self.spriteDir.x * self.scale, self.scale)
+        self.anim:show(
+            self.currentPos.x + (xOff or 0),
+            self.currentPos.y + (yOff or 0),
+            0,
+            self.spriteDir.x * self.scale,
+            self.scale
+        )
     end
 end
 
 function Player:getPosOnGrid(grid)
     local posX, posY = grid:getTilePos(self.row, self.col)
-    if self.spriteDir.x == -1 then posX = posX + 44 end
+    if self.spriteDir.x == -1 then
+        posX = posX + 44
+    end
     return posX + 10, posY
 end
 
-function Player:playAnim(anim) self.anim:play(anim) end
+function Player:playAnim(anim)
+    self.anim:play(anim)
+end
 
 function Player:update(dt)
     --
@@ -81,14 +89,14 @@ function Player:update(dt)
             self.currentPos.x = self.desiredPos.x
         else
             self.currentPos.x = self.currentPos.x - self.moveSpeed
-            self:playAnim('squashed')
+            self:playAnim("squashed")
         end
     elseif self.currentPos.x < self.desiredPos.x then
         if self.spriteDir.x == -1 then
             self.currentPos.x = self.desiredPos.x
         else
             self.currentPos.x = self.currentPos.x + self.moveSpeed
-            self:playAnim('squashed')
+            self:playAnim("squashed")
         end
     end
 
@@ -97,7 +105,7 @@ function Player:update(dt)
             self.currentPos.y = self.desiredPos.y
         else
             self.currentPos.y = self.currentPos.y - self.moveSpeed
-            self:playAnim('squashed')
+            self:playAnim("squashed")
         end
     elseif self.currentPos.y < self.desiredPos.y then
         if self.spriteDir.y == -1 then
@@ -105,19 +113,19 @@ function Player:update(dt)
         else
             self.currentPos.y = self.currentPos.y + self.moveSpeed
             love.graphics.print("logging")
-            self:playAnim('squashed')
+            self:playAnim("squashed")
         end
     end
 
-    if self.currentPos.x == self.desiredPos.x and self.desiredPos.y ==
-        self.desiredPos.y then self:playAnim('idle') end
+    if self.currentPos.x == self.desiredPos.x and self.desiredPos.y == self.desiredPos.y then
+        self:playAnim("idle")
+    end
 
     self.anim:update(dt)
 end
 
 function Player:isMoving()
-    return (self.currentPos.x ~= self.desiredPos.x or self.currentPos.y ~=
-               self.desiredPos.y)
+    return (self.currentPos.x ~= self.desiredPos.x or self.currentPos.y ~= self.desiredPos.y)
 end
 
 function Player:moveLeft(grid)
