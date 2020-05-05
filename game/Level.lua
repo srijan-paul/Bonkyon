@@ -25,6 +25,7 @@ local LEVEL_SWITCH_WAIT_TIME = 1
 local gameOverRectLen = 0
 local GAME_OVER_FADE_OUT_SPEED = 30
 local TEXT_POS_X, TEXT_POS_Y = 10, 10
+local TEXT_RECT_HEIGHT, TEXT_RECT_WIDTH = 100, GameConstants.SCREEN_WIDTH
 
 function Level:new(lv)
     local newLevel = {}
@@ -63,8 +64,10 @@ function Level:show()
     self.angelTwin:show(grid, 0, levelYPos)
 
     if self.text then
+        love.graphics.setColor(0, 0, 0, 0.3)
+        love.graphics.rectangle('fill', 0, levelYPos, TEXT_RECT_WIDTH, TEXT_RECT_HEIGHT)
         love.graphics.setColor(1, 1, 1, 1)
-        love.graphics.print(self.text, TEXT_POS_X, TEXT_POS_Y)
+        love.graphics.print(self.text, TEXT_POS_X, TEXT_POS_Y + levelYPos)
     end
 
     if self.state == LevelState.GAME_OVER then

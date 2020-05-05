@@ -1,14 +1,13 @@
 {
-  "rows": 6,
-  "cols": 4,
-  "map": [
-    [1, 1, 2, 3],
-    [1, 1, 1, 1],
-    [1, 1, 2, 2],
-    [1, 1, 1, 1],
-    [1, 1, 1, 1],
-    [4, 2, 2, 1]
-  ],
-  "angelStart": [2, 1],
-  "devilStart": [5, 4]
+    "rows": 3,
+    "cols": 3,
+    "map": [
+      [1, 1, 3],
+      [1, 2, 1],
+      [1, 4, 1]
+    ],
+    "angelStart": [2, 3],
+    "devilStart": [1, 1],
+    "text": "You can move one twin against a block to only move one of the two.\nTry moving Bonky left against the block before moving him to the angel tile"
 }
+  
