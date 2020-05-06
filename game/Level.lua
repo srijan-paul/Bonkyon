@@ -106,8 +106,13 @@ function Level:update(dt)
         if self:transitionTimerTimeout() then
             levelYPos = levelYPos - TRANSITION_SPEED
             if levelYPos < LEVEL_MIN_HEIGHT then
-                self.stateManager.switchState(GameConstants.State.PLAYING,
-                                              self.levelIndex + 1)
+                if self.levelIndex ~= 7 then
+                    self.stateManager.switchState(GameConstants.State.PLAYING,
+                                                  self.levelIndex + 1)
+                else -- this is horrible code, but I really don't have patience so IDC
+                    self.stateManager.switchState()
+                end
+
             end
         end
     end

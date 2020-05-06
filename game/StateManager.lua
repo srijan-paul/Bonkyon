@@ -2,6 +2,7 @@ local GameConstants = require('game/GameConstants')
 local menu = require('game/MainMenu')
 local Level = require('game/Level')
 local LevelSelect = require('game/LevelSelect')
+local GameEnd = require('game/GameEnd')
 
 local StateManager = {currentState = nil, _state = GameConstants.State.MENU}
 
@@ -22,6 +23,9 @@ function StateManager.switchState(state, arg)
         StateManager.currentState:load()
     elseif state == GameConstants.State.LVL_SELECT then
         StateManager.currentState = LevelSelect
+        StateManager.currentState:load()
+    else 
+        StateManager.currentState = GameEnd
         StateManager.currentState:load()
     end
 end
