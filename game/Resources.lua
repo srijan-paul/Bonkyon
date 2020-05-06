@@ -1,4 +1,5 @@
 local name = require "lib/loveAnim/anim"
+
 local Resources = {
     Audio = {},
     Image = {},
@@ -14,6 +15,7 @@ function Resources.load()
     Resources.DevilTexture = love.graphics.newImage("assets/images/devilGuy.png")
     Resources.AngelTexture = love.graphics.newImage("assets/images/angelGuy.png")
     Resources.UITexture.Button = love.graphics.newImage("assets/images/button_pink.png")
+    Resources.UITexture.BtnSmall = love.graphics.newImage("assets/images/button_pink_small.png")
     -- Fonts
     Resources.Fonts.PixelFont = love.graphics.newFont("assets/font/font.ttf", 20)
     Resources.Fonts.PixelFontLarge = love.graphics.newFont("assets/font/font.ttf", 30)
@@ -34,6 +36,10 @@ function Resources.load()
     Resources.Audio.Track:setLooping(true)
     Resources.Audio.GameOver = love.audio.newSource("assets/sounds/442127__euphrosyyn__8-bit-game-over.wav", "static")
     Resources.Audio.Win = love.audio.newSource("assets/sounds/253887__themusicalnomad__positive-beeps.wav", "static")
+
+    -- initializing
+    local UIButton = require 'game/UI/UIButton'
+    UIButton.init()
 end
 
 return Resources

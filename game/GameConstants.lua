@@ -19,7 +19,7 @@ local GameConstants = {
     TILE_SIZE = 64,
     SCREEN_WIDTH = 1024,
     SCREEN_HEIGHT = 576,
-    State = {MENU = 0, PLAYING = 1, TUTORIAL = 3}
+    State = {MENU = 0, PLAYING = 1, LVL_SELECT = 3}
 }
 
 return GameConstants

@@ -4,6 +4,7 @@ local GameConstants = require("game/GameConstants")
 local util = require('lib/Helpers')
 local loadLevel = require("game/LevelLoader")
 local Resources = require("game/Resources")
+local Save = require('game/Save')
 
 -- there is a lot of dirty code in this file
 -- apologies to anyone trying to understand any of this.
@@ -59,13 +60,14 @@ end
 function Level:show()
     self.grid:show(0, levelYPos)
     -- this is where I start hating myself for writing this garbage code.
-   
+
     if self.devilTwin then self.devilTwin:show(grid, 0, levelYPos) end
     self.angelTwin:show(grid, 0, levelYPos)
 
     if self.text then
         love.graphics.setColor(0, 0, 0, 0.5)
-        love.graphics.rectangle('fill', 0, levelYPos, TEXT_RECT_WIDTH, TEXT_RECT_HEIGHT)
+        love.graphics.rectangle('fill', 0, levelYPos, TEXT_RECT_WIDTH,
+                                TEXT_RECT_HEIGHT)
         love.graphics.setColor(1.0, 0.768, 0.239, 1)
         love.graphics.print(self.text, TEXT_POS_X, TEXT_POS_Y + levelYPos)
     end
@@ -118,14 +120,17 @@ function Level:update(dt)
     -- TODO: maket this portion of the code event driven
     if self.state == LevelState.ACTIVE then
         if self:checkGameOver() then self:gameOver() end
-        if self:checkWin() then self:launchNextLevel() end
+        if self:checkWin() then
+            Save.save({tutorial = true, level = self.levelIndex + 1})
+            self:launchNextLevel()
+        end
     end
 end
 
 function Level:handleKeyPress(key)
     if self.state ~= LevelState.ACTIVE then return end
     if key == 'r' then self:reset() end
-    if not (key == 'a' or key == 'd'or key =='w' or key =='s') then return end
+    if not (key == 'a' or key == 'd' or key == 'w' or key == 's') then return end
     moveTwin(self.angelTwin, key, self.grid)
     moveTwin(self.devilTwin, key, self.grid)
 
