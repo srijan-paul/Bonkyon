@@ -10,6 +10,11 @@ function StateManager.init()
     StateManager.currentState:load()
 end
 
+-- I should really optimize these state thingies but 
+-- I didn't add a way to switch back from game to menu
+-- or level select to menu. So the load gets called
+-- only ocne anyways lol
+
 function StateManager.switchState(state, arg)
     StateManager._state = state
     if state == GameConstants.State.PLAYING then
