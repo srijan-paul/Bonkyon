@@ -66,7 +66,7 @@ function Level:show()
     if self.text then
         love.graphics.setColor(0, 0, 0, 0.5)
         love.graphics.rectangle('fill', 0, levelYPos, TEXT_RECT_WIDTH, TEXT_RECT_HEIGHT)
-        love.graphics.setColor(1.0, 0.878, 0.4, 1)
+        love.graphics.setColor(1.0, 0.768, 0.239, 1)
         love.graphics.print(self.text, TEXT_POS_X, TEXT_POS_Y + levelYPos)
     end
 
@@ -124,6 +124,7 @@ end
 
 function Level:handleKeyPress(key)
     if self.state ~= LevelState.ACTIVE then return end
+    if key == 'r' then self:reset() end
     if not (key == 'a' or key == 'd'or key =='w' or key =='s') then return end
     moveTwin(self.angelTwin, key, self.grid)
     moveTwin(self.devilTwin, key, self.grid)

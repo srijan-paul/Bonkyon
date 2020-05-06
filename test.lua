@@ -17,5 +17,5 @@ local util = require("lib/helpers")
 --
 -- local lvl = json.decode(readFile('levels/level1.json'))
 --
-local r,g,b = util.hexToColor('ffe066')
+local r,g,b = util.hexToColor('ffc43d')
 print(r ..', ' .. g ..', '.. b)
