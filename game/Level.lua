@@ -64,9 +64,9 @@ function Level:show()
     self.angelTwin:show(grid, 0, levelYPos)
 
     if self.text then
-        love.graphics.setColor(0, 0, 0, 0.3)
+        love.graphics.setColor(0, 0, 0, 0.5)
         love.graphics.rectangle('fill', 0, levelYPos, TEXT_RECT_WIDTH, TEXT_RECT_HEIGHT)
-        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.setColor(1.0, 0.878, 0.4, 1)
         love.graphics.print(self.text, TEXT_POS_X, TEXT_POS_Y + levelYPos)
     end
 
