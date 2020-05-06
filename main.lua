@@ -1,4 +1,4 @@
-local util = require('lib/Helpers')
+local util = require('lib/helpers')
 local Resources = require('game/Resources')
 local StateManager = require('game/StateManager')
 local Tile = require('game/Tile')
