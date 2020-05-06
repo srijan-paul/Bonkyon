@@ -113,7 +113,7 @@ function MainMenu:update(dt)
             MenuPosition.y = MenuPosition.y - TRANSITION_OUT_SPEED
         end
         if MenuPosition.y < -GameConstants.SCREEN_WIDTH then
-            MainMenu.stateManager.switchState(nextState, oldSave.level)
+            MainMenu.stateManager.switchState(nextState, oldSave.level or 0)
         end
     end
 

@@ -132,7 +132,7 @@ function Level:update(dt)
             else
                 lvl = self.levelIndex + 1
             end
-            Save.save({tutorial = true, level = lv})
+            Save.save({tutorial = true, level = lvl})
             self:launchNextLevel()
         end
     end
