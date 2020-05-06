@@ -12,6 +12,7 @@ function GameEnd.load()
     yPos = -GameConstants.SCREEN_HEIGHT
     love.graphics.setBackgroundColor(Util.hexToColor('2c4268'))
     love.graphics.setFont(Resources.Fonts.PixelFont)
+    Resources.Audio.WhooshIn:play()
 end
 
 function GameEnd.update(dt) if yPos < 0 then yPos = yPos + yVel end end

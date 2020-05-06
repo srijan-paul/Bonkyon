@@ -126,7 +126,13 @@ function Level:update(dt)
     if self.state == LevelState.ACTIVE then
         if self:checkGameOver() then self:gameOver() end
         if self:checkWin() then
-            Save.save({tutorial = true, level = self.levelIndex + 1})
+            local lvl = -1
+            if self.levelIndex == 7 then
+                lvl = 7
+            else
+                lvl = self.levelIndex + 1
+            end
+            Save.save({tutorial = true, level = lv})
             self:launchNextLevel()
         end
     end

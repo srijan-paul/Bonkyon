@@ -17,8 +17,8 @@ function Resources.load()
     Resources.UITexture.Button = love.graphics.newImage("assets/images/button_pink.png")
     Resources.UITexture.BtnSmall = love.graphics.newImage("assets/images/button_pink_small.png")
     -- Fonts
-    Resources.Fonts.PixelFont = love.graphics.newFont("assets/font/font.ttf", 20)
-    Resources.Fonts.PixelFontLarge = love.graphics.newFont("assets/font/font.ttf", 30)
+    Resources.Fonts.PixelFont = love.graphics.newFont("assets/font/VCR_OSD_MONO_1.001.ttf", 20)
+    Resources.Fonts.PixelFontLarge = love.graphics.newFont("assets/font/VCR_OSD_MONO_1.001.ttf", 30)
     Resources.Fonts.MenuFont = love.graphics.newFont("assets/font/west_england.ttf", 20)
     -- Audio
     Resources.Audio.Jump = love.audio.newSource("assets/sounds/jump.wav", "static")
