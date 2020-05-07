@@ -24,14 +24,16 @@ function StateManager.switchState(state, arg)
     elseif state == GameConstants.State.LVL_SELECT then
         StateManager.currentState = LevelSelect
         StateManager.currentState:load()
-    else 
+    else
         StateManager.currentState = GameEnd
         StateManager.currentState:load()
     end
 end
 
 function StateManager.handleKeyPress(key)
-    StateManager.currentState:handleKeyPress(key)
+    if StateManager.currentState.handleKeyPress then
+        StateManager.currentState:handleKeyPress(key)
+    end
 end
 
 function StateManager.updateState(dt) StateManager.currentState:update(dt) end

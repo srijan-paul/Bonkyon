@@ -92,9 +92,7 @@ function MainMenu.show()
 end
 
 function MainMenu:handleKeyPress(key)
-    if key == 'return' then
-        MainMenu.stateManager.switchState(GameConstants.State.PLAYING, 1)
-    end
+    
 end
 
 function MainMenu:update(dt)
