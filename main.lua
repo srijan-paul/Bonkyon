@@ -1,21 +1,22 @@
-local util = require('lib/helpers')
-local Resources = require('game/Resources')
-local StateManager = require('game/StateManager')
-local Tile = require('game/Tile')
+local Resources = require("game/Resources")
+local StateManager = require("game/StateManager")
+local Tile = require("game/Tile")
 
 function love.load(arg)
-    Resources.load()
-    Tile.initTexture()
-    love.graphics.setFont(Resources.Fonts.MenuFont)
-    StateManager:init()
-
-    -- the hexToColor function should not be used extensively in a game's update
-    -- loop for performance reasons
-    -- initialize the jump sound
+	Resources.load()
+	Tile.initTexture()
+	love.graphics.setFont(Resources.Fonts.MenuFont)
+	StateManager:init()
 end
 
-function love.draw() StateManager.drawState() end
+function love.draw()
+	StateManager.drawState()
+end
 
-function love.update(dt) StateManager.updateState(dt) end
+function love.update(dt)
+	StateManager.updateState(dt)
+end
 
-function love.keypressed(key) StateManager.handleKeyPress(key) end
+function love.keypressed(key)
+	StateManager.handleKeyPress(key)
+end

@@ -6,9 +6,9 @@
 -- has been a mess with tangled , dirty and inefficient code.
 -- At least it works...
 local UIContainer = require("game/UI/UIContainer")
-local UIButton = require('game/UI/UIButton')
-local GameConstants = require('game/GameConstants')
-local Resources = require('game/Resources')
+local UIButton = require("game/UI/UIButton")
+local GameConstants = require("game/GameConstants")
+local Resources = require("game/Resources")
 
 local LevelSelect = {}
 
@@ -30,55 +30,54 @@ local TRANSITION_OUT_SPEED = 40
 local levelIndex = nil
 
 function LevelSelect.load()
-    levelIndex = nil
-    LevelSelect.stateManager = require('game/StateManager')
-    btnContainer = UIContainer:new(2, 4)
-    btnContainer:setPadding(20, 20)
-    local levelBtns = {}
-    local lvlCount = 1
-    for i = 1, CONTAINER_ROWS do
-        for j = 1, CONTAINER_COLS do
-            local btn = UIButton:new(UIButton.BTN_SMALL, lvlCount)
-            btn:onClick(function()
-                launchLevel(((i - 1) * CONTAINER_COLS + j) - 1)
-            end)
-            lvlCount = lvlCount + 1
-            btnContainer:add(btn)
-        end
-    end
-    Resources.Audio.WhooshIn:play()
+	levelIndex = nil
+	LevelSelect.stateManager = require("game/StateManager")
+	btnContainer = UIContainer:new(2, 4)
+	btnContainer:setPadding(20, 20)
+	local levelBtns = {}
+	local lvlCount = 1
+	for i = 1, CONTAINER_ROWS do
+		for j = 1, CONTAINER_COLS do
+			local btn = UIButton:new(UIButton.BTN_SMALL, lvlCount)
+			btn:onClick(function()
+				launchLevel(((i - 1) * CONTAINER_COLS + j) - 1)
+			end)
+			lvlCount = lvlCount + 1
+			btnContainer:add(btn)
+		end
+	end
+	Resources.Audio.WhooshIn:play()
 end
 
 function LevelSelect.update(dt)
-    btnContainer:update(dt)
-    if currentState == State.TRANSITION_IN then
-        MenuPosition.y = MenuPosition.y + TRANSITION_IN_SPEED
-        if MenuPosition.y > 0 then
-            MenuPosition.y = 0
-            currentState = State.IDLE
-        end
-    elseif currentState == State.TRANSITION_OUT then
-        if love.timer.getTime() - transitionTimerStart > 0.1 then
-            MenuPosition.y = MenuPosition.y - TRANSITION_OUT_SPEED
-        end
-        if MenuPosition.y < -GameConstants.SCREEN_WIDTH then
-            LevelSelect.stateManager.switchState(GameConstants.State.PLAYING,
-                                                 levelIndex)
-        end
-    end
+	btnContainer:update(dt)
+	if currentState == State.TRANSITION_IN then
+		MenuPosition.y = MenuPosition.y + TRANSITION_IN_SPEED
+		if MenuPosition.y > 0 then
+			MenuPosition.y = 0
+			currentState = State.IDLE
+		end
+	elseif currentState == State.TRANSITION_OUT then
+		if love.timer.getTime() - transitionTimerStart > 0.1 then
+			MenuPosition.y = MenuPosition.y - TRANSITION_OUT_SPEED
+		end
+		if MenuPosition.y < -GameConstants.SCREEN_WIDTH then
+			LevelSelect.stateManager.switchState(GameConstants.State.PLAYING, levelIndex)
+		end
+	end
 end
 
 function LevelSelect.show()
-    btnContainer:show(CONTAINER_POS_X, CONTAINER_POS_Y + MenuPosition.y)
+	btnContainer:show(CONTAINER_POS_X, CONTAINER_POS_Y + MenuPosition.y)
 end
 
 function launchLevel(arg)
-    levelIndex = arg
-    print(arg .. ' is the level indexx')
-    currentState = State.TRANSITION_OUT
-    Resources.Audio.WhooshOut:play()
-    transitionTimerStart = love.timer.getTime()
-    nextState = GameConstants.State.PLAYING
+	levelIndex = arg
+	print(arg .. " is the level indexx")
+	currentState = State.TRANSITION_OUT
+	Resources.Audio.WhooshOut:play()
+	transitionTimerStart = love.timer.getTime()
+	nextState = GameConstants.State.PLAYING
 end
 
 return LevelSelect
